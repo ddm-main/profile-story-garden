@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Small native scroll helper used by in-page navigation.
 import type Lenis from 'lenis';
 

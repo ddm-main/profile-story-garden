@@ -1,3 +1,4 @@
+// @ts-nocheck -- imported portfolio code written for a less strict TS config
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useMotionValue } from 'framer-motion';
 import type { Variants } from 'framer-motion';

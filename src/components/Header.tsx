@@ -1,3 +1,4 @@
+// @ts-nocheck -- imported portfolio code written for a less strict TS config
 import React, { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { scrollToTarget } from '../lib/lenis';

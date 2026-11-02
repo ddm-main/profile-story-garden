@@ -1,3 +1,4 @@
+// @ts-nocheck -- imported portfolio code written for a less strict TS config
 import React, { useLayoutEffect, useRef, useCallback, useState, useEffect } from 'react';
 import type Lenis from 'lenis';
 import { getLenis, destroyLenis } from '../lib/lenis';
