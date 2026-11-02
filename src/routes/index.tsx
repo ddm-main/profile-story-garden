@@ -1,24 +1,50 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { MotionConfig } from "framer-motion";
+import { Header } from "@/components/Header";
+import { HeroSection } from "@/components/HeroSection";
+import { AboutSection } from "@/components/AboutSection";
+import { ProjectsSection } from "@/components/ProjectsSection";
+import { SkillsSection } from "@/components/SkillsSection";
+import { ExperienceSection } from "@/components/ExperienceSection";
+import { ContactSection } from "@/components/ContactSection";
+import { ScrollProgress } from "@/components/ScrollProgress";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "Deepak Dongare | Senior Cloud Security Engineer | Azure & IAM";
+const desc = "10 years of IT experience securing Azure, identity, endpoints, and enterprise infrastructure.";
+const img = "https://www.deepakd.online/deepak-portrait.webp";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: desc },
+      { property: "og:title", content: "Deepak Dongare | Senior Cloud Security Engineer" },
+      { property: "og:description", content: desc },
+      { property: "og:type", content: "website" },
+      { property: "og:image", content: img },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: img },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <MotionConfig reducedMotion="user">
+      <div className="w-full min-h-screen bg-black text-[#E8DFD8] selection:bg-[#cbb59d] selection:text-black">
+        <ScrollProgress />
+        <a href="#main" className="skip-link">Skip to content</a>
+        <Header />
+        <HeroSection />
+        <main id="main">
+          <AboutSection />
+          <ProjectsSection />
+          <SkillsSection />
+          <ExperienceSection />
+          <ContactSection />
+        </main>
+      </div>
+    </MotionConfig>
   );
 }
