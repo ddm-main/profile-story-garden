@@ -7,7 +7,7 @@ const roles = [
   {
     period: 'AUG 2023 — SEP 2026',
     role: 'SENIOR CLOUD SECURITY ENGINEER',
-    company: 'REALTHINGS INDIA PRIVATE LIMITED · PUNE, INDIA',
+    company: 'REALTHINGKS INDIA PRIVATE LIMITED · PUNE, INDIA',
     highlights: [
       'Led a two-person IT team; managed identity, Azure security, networks, and infrastructure.',
       'Entra ID and Active Directory · 10+ apps · MFA rollout for 230–240 users.',
@@ -51,7 +51,7 @@ export const ExperienceSection: React.FC = () => (
       </div>
       <div className="mb-10 flex flex-col justify-between gap-4 md:mb-14 md:flex-row md:items-end">
         <h2 className="font-display text-5xl uppercase leading-[0.9] tracking-wide text-white sm:text-7xl">Career experience</h2>
-        <ul className="grid gap-1.5 text-sm text-[#CFC2B5] md:justify-items-end"><li>• RealThings India · Cloud security</li><li>• FinIQ Consulting · Network engineering</li><li>• Starconn Mobility · IT infrastructure</li></ul>
+        <ul className="grid gap-1.5 text-sm text-[#CFC2B5] md:justify-items-end"><li>• RealThingks India · Cloud security</li><li>• FinIQ Consulting · Network engineering</li><li>• Starconn Mobility · IT infrastructure</li></ul>
       </div>
       <div className="space-y-5">
         {roles.map((role, i) => (
