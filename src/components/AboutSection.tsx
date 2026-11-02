@@ -179,10 +179,10 @@ export const AboutSection: React.FC = () => {
                   className="text-3xl sm:text-5xl font-normal text-[#FFFFFF] tracking-tight"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  10
+                  AL2
                 </span>
                 <span className="text-[11px] sm:text-xs font-semibold tracking-[0.16em] uppercase text-[#F0E6DC] mt-1">
-                  Years in IT
+                  TISAX Led
                 </span>
               </div>
 
@@ -192,10 +192,10 @@ export const AboutSection: React.FC = () => {
                   className="text-3xl sm:text-5xl font-normal text-[#F5D59A] tracking-tight"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  7+
+                  100+
                 </span>
                 <span className="text-[11px] sm:text-xs font-semibold tracking-[0.16em] uppercase text-[#F0E6DC] mt-1">
-                  Years Azure
+                  Azure VMs
                 </span>
               </div>
 

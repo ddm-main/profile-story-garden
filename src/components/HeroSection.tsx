@@ -38,6 +38,7 @@ export const HeroSection: React.FC = () => {
   const hasLeftHeroRef = useRef(false);
   const [isInHero, setIsInHero] = useState(true);
   const [videoFailed, setVideoFailed] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(
     () =>
       typeof window !== "undefined" &&
@@ -61,8 +62,9 @@ export const HeroSection: React.FC = () => {
   useEffect(() => {
     if (prefersReducedMotion) return;
     if (videoRef.current) {
+      if (videoRef.current.readyState >= 2) setVideoReady(true);
       videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => setVideoFailed(true));
+      videoRef.current.play().catch(() => {});
     }
   }, [prefersReducedMotion]);
 
@@ -144,13 +146,13 @@ export const HeroSection: React.FC = () => {
       )}
 
       {/* ================= 2. CINEMATIC VIDEO HERO VISUAL LAYER ================= */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-black flex items-center justify-end">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-black flex items-end justify-end">
         <motion.div
           animate={prefersReducedMotion ? {} : { scale: [1, 1.015, 1] }}
           transition={
             prefersReducedMotion ? {} : { duration: 10, repeat: Infinity, ease: "easeInOut" }
           }
-          className="relative h-[100svh] w-full sm:w-[90vw] md:w-[75vw] lg:w-[62vw] xl:w-[58vw] 2xl:w-[54vw] flex items-center justify-end overflow-hidden"
+          className="relative h-[calc(100svh-5.5rem)] w-full sm:w-[90vw] md:w-[75vw] lg:w-[62vw] xl:w-[58vw] 2xl:w-[54vw] flex items-center justify-end overflow-hidden"
         >
           {/* Reduced motion: skip the autoplaying 1.9MB video entirely and
               show the same poster frame as a static image. */}
@@ -159,12 +161,12 @@ export const HeroSection: React.FC = () => {
               ref={videoRef}
               muted
               playsInline
-              preload="metadata"
-              poster="/deepak-cut.webp"
+              preload="auto"
               onTimeUpdate={handleTimeUpdate}
               onEnded={handleEnded}
               onError={() => setVideoFailed(true)}
-              className="h-full w-full object-cover object-center lg:object-[center_18%] brightness-[0.85] sm:brightness-[0.92] lg:brightness-[1] contrast-[1.04]"
+              onLoadedData={() => setVideoReady(true)}
+              className={`h-full w-full transition-opacity duration-700 ${videoReady ? "opacity-100" : "opacity-0"}  object-cover object-center lg:object-[center_18%] brightness-[0.85] sm:brightness-[0.92] lg:brightness-[1] contrast-[1.04]`}
             >
               <source src="/videos/hero.mp4" type="video/mp4" />
             </video>
@@ -220,7 +222,7 @@ export const HeroSection: React.FC = () => {
       </div>
 
       {/* ================= 4. CONTENT LAYER ================= */}
-      <div className="relative z-10 flex flex-col justify-between h-full min-h-screen w-full px-4 sm:px-12 lg:px-16 pt-24 sm:pt-28 pb-8 pointer-events-none">
+      <div className="relative z-10 flex flex-col justify-center h-full min-h-screen w-full px-4 sm:px-12 lg:px-16 pt-24 sm:pt-28 pb-8 pointer-events-none">
         {/* Main Hero Row */}
         <div className="relative flex flex-col md:flex-row items-center justify-between w-full pt-4 pb-2 my-auto">
           {/* LEFT: Balanced Headline & Actions */}
@@ -252,48 +254,36 @@ export const HeroSection: React.FC = () => {
                 >
                   ENGINEER
                 </span>
-
-                {/* Line 3: ROLE SPECIALTIES */}
-                <span
-                  aria-hidden="true"
-                  className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E2BF] via-[#E2BE80] to-[#BE9656] drop-shadow-[0_10px_30px_rgba(190,150,86,0.45)]"
-                >
-                  AZURE &amp; IAM
-                </span>
               </h1>
             </motion.div>
 
-            {/* Subtitle Technologies */}
-            <motion.div variants={fadeUpVariants} className="mb-3.5 sm:mb-4">
-              <ul
-                className="flex flex-wrap gap-x-3 gap-y-1 text-xs sm:text-[13px] md:text-sm font-semibold tracking-[0.14em] uppercase text-[#F3E6D8] leading-relaxed"
+            {/* Specialisation, kept separate from the role title */}
+            <motion.div variants={fadeUpVariants} className="mb-4 flex items-center gap-3 sm:mb-5">
+              <span aria-hidden="true" className="h-px w-8 bg-[#D4AF37] sm:w-12" />
+              <p
+                className="text-xs font-semibold uppercase tracking-[0.24em] text-[#F5D59A] sm:text-sm"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
-                <li>• Azure security</li>
-                <li>• Identity and access</li>
-                <li>• Cybersecurity</li>
-              </ul>
+                Azure Security · Identity &amp; Access (IAM)
+              </p>
             </motion.div>
 
-            {/* Short, scan-first profile bullets */}
             <motion.div
               variants={fadeUpVariants}
               className="mb-6 max-w-xl text-sm font-normal leading-snug tracking-wide text-[#E8DCD0] sm:text-[15px] md:text-base"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
               <ul className="grid gap-2">
-                <li className="flex gap-2">
-                  <span className="text-[#D4AF37]">•</span>
-                  <span>10 years in IT · 7+ years in Azure</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-[#D4AF37]">•</span>
-                  <span>Entra ID · cloud security · endpoint defense</span>
-                </li>
-                <li className="flex gap-2">
-                  <span className="text-[#D4AF37]">•</span>
-                  <span>Security automation · TISAX Level 2</span>
-                </li>
+                {[
+                  "10 years in IT · 7+ years in Azure",
+                  "Entra ID · cloud security · endpoint defense",
+                  "Building internal apps with AI · Claude, Lovable, Supabase",
+                ].map((line) => (
+                  <li key={line} className="flex gap-2">
+                    <span className="text-[#D4AF37]">•</span>
+                    <span>{line}</span>
+                  </li>
+                ))}
               </ul>
             </motion.div>
 
@@ -338,52 +328,32 @@ export const HeroSection: React.FC = () => {
               </motion.a>
             </motion.div>
           </motion.div>
-
-          <div
-            className="absolute right-4 top-1/2 z-20 hidden -translate-y-1/2 xl:block"
-            role="group"
-            aria-label="Selected security experience"
-          >
-            {[
-              { label: "IDENTITY", value: "230–240 USERS", target: "experience", y: 0 },
-              { label: "ENDPOINTS", value: "260+ DEVICES", target: "experience", y: 1 },
-              { label: "ASSURANCE", value: "TISAX LEVEL 2", target: "skills", y: 2 },
-            ].map((item, index) => (
-              <motion.a
-                key={item.label}
-                href={`#${item.target}`}
-                onClick={(event) => {
-                  event.preventDefault();
-                  scrollToTarget(item.target, -72);
-                }}
-                initial={prefersReducedMotion ? false : { opacity: 0, x: 24 }}
-                animate={
-                  prefersReducedMotion
-                    ? {}
-                    : { opacity: 1, x: [0, 4, 0], y: [0, index % 2 ? 3 : -3, 0] }
-                }
-                transition={
-                  prefersReducedMotion
-                    ? {}
-                    : {
-                        opacity: { delay: 0.6 + index * 0.16, duration: 0.5 },
-                        x: { duration: 6 + index, repeat: Infinity, ease: "easeInOut" },
-                        y: { duration: 5 + index, repeat: Infinity, ease: "easeInOut" },
-                      }
-                }
-                whileHover={prefersReducedMotion ? {} : { x: -8, scale: 1.04 }}
-                whileTap={{ scale: 0.98 }}
-                className={`relative mb-3 block w-52 rounded-sm border border-[#D4AF37]/40 bg-[#090807]/85 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.4)] backdrop-blur-md transition-colors hover:border-[#F5D59A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#F5D59A] ${index === 1 ? "xl:ml-5" : index === 2 ? "xl:ml-2" : ""}`}
-                aria-label={`${item.label}: ${item.value}. View experience.`}
-              >
-                <span className="block font-mono text-[10px] tracking-[0.22em] text-[#C9A96E]">
-                  0{index + 1} / {item.label}
-                </span>
-                <span className="mt-1 block font-display text-xl text-white">{item.value}</span>
-              </motion.a>
-            ))}
-          </div>
         </div>
+
+        {/* Stat strip: static and under the actions, so it never covers the portrait */}
+        <motion.dl
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="pointer-events-auto mt-8 grid w-full max-w-xl grid-cols-4 divide-x divide-[#8C6D4F]/40 border-t border-[#8C6D4F]/40 pt-4 sm:mt-10"
+          aria-label="Experience at a glance"
+        >
+          {[
+            ["10", "Years in IT"],
+            ["7+", "Years Azure"],
+            ["Entra ID", "Identity & Access"],
+            ["Defender", "for Cloud"],
+          ].map(([value, label]) => (
+            <div key={label} className="px-2 first:pl-0 sm:px-4">
+              <dd className="font-display text-2xl leading-none text-[#F5D59A] sm:text-3xl">
+                {value}
+              </dd>
+              <dt className="mt-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#CFC2B5] sm:text-[11px]">
+                {label}
+              </dt>
+            </div>
+          ))}
+        </motion.dl>
 
         {/* Bottom Spacer */}
         <div className="h-2" />

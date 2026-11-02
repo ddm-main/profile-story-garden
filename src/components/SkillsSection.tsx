@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 
 const TRANSCRIPT_URL =
   "https://learn.microsoft.com/en-us/users/deepakdongare/transcript/d4y0xu19gkjj5l2";
@@ -14,7 +14,6 @@ const certDetails: [string, string][] = [
 ];
 
 const CertificationCard: React.FC = () => {
-  const [open, setOpen] = useState(false);
   return (
     <div
       id="certification"
@@ -33,15 +32,6 @@ const CertificationCard: React.FC = () => {
           </span>
         </div>
         <div className="flex shrink-0 flex-wrap gap-2">
-          <button
-            type="button"
-            aria-expanded={open}
-            aria-controls="cert-details"
-            onClick={() => setOpen((v) => !v)}
-            className="border border-[#8C6D4F]/50 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-[#E6C27D] transition-colors hover:border-[#D4AF37] hover:text-white"
-          >
-            {open ? "Hide details" : "View details"}
-          </button>
           <a
             href={TRANSCRIPT_URL}
             target="_blank"
@@ -52,30 +42,80 @@ const CertificationCard: React.FC = () => {
           </a>
         </div>
       </div>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.dl
-            id="cert-details"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-5 grid gap-px overflow-hidden border border-[#8C6D4F]/25 bg-[#8C6D4F]/25 sm:grid-cols-2"
-          >
-            {certDetails.map(([k, v]) => (
-              <div key={k} className="bg-[#0D0B09] px-4 py-3">
-                <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#B39169]">
-                  {k}
-                </dt>
-                <dd className="mt-1 text-sm text-[#E8DFD8]">{v}</dd>
-              </div>
-            ))}
-          </motion.dl>
-        )}
-      </AnimatePresence>
+      <dl className="mt-5 grid gap-px overflow-hidden border border-[#8C6D4F]/25 bg-[#8C6D4F]/25 sm:grid-cols-2 lg:grid-cols-3">
+        {certDetails.map(([k, v]) => (
+          <div key={k} className="bg-[#0D0B09] px-4 py-3">
+            <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#B39169]">{k}</dt>
+            <dd className="mt-1 text-sm text-[#E8DFD8]">{v}</dd>
+          </div>
+        ))}
+      </dl>
     </div>
   );
 };
+
+const platforms: { name: string; points: string[] }[] = [
+  {
+    name: "Microsoft Entra ID",
+    points: [
+      "MFA rollout for 230–240 users",
+      "Conditional Access, RBAC, PIM",
+      "Access reviews and joiner, mover, leaver",
+      "SSO for 10+ applications",
+    ],
+  },
+  {
+    name: "Defender for Cloud",
+    points: [
+      "Secure Score reviews",
+      "CIS Azure and Microsoft Cloud Security Benchmark",
+      "Risk prioritisation and remediation tracking",
+    ],
+  },
+  {
+    name: "Azure Firewall & NSGs",
+    points: [
+      "Network segmentation",
+      "Private Endpoints and Private DNS",
+      "VPN Gateway and Bastion access",
+    ],
+  },
+  {
+    name: "Azure Key Vault",
+    points: ["Secrets and key storage", "Managed identities", "SSL/TLS certificate lifecycle"],
+  },
+  {
+    name: "Azure Policy",
+    points: [
+      "Governance guardrails",
+      "Compliance posture checks",
+      "Remediation tracked to closure",
+    ],
+  },
+  {
+    name: "Azure Monitor & Log Analytics",
+    points: [
+      "Monitoring and alerting",
+      "Log queries for investigation",
+      "Incident root cause analysis",
+    ],
+  },
+  {
+    name: "Azure Backup & Site Recovery",
+    points: ["Backup job and failure reviews", "Retention checks", "Restore and DR validation"],
+  },
+  {
+    name: "Intune & Defender for Endpoint",
+    points: [
+      "Device management",
+      "Endpoint protection alongside Sophos",
+      "BitLocker and device controls",
+    ],
+  },
+];
+
+const AZURE_TERMS =
+  /azure|entra|defender|key vault|log analytics|private endpoint|nsg|vnet|microsoft|bastion|expressroute|network watcher|application gateway|waf|managed identit|secure score|cspm|cis/i;
 
 const skillGroups = [
   {
@@ -137,6 +177,34 @@ export const SkillsSection: React.FC = () => (
           <li>• Endpoint defense and governance</li>
         </ul>
       </div>
+      <h3 className="mb-4 font-mono text-xs uppercase tracking-[0.25em] text-[#B39169]">
+        Core Azure &amp; security platforms
+      </h3>
+      <div className="mb-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {platforms.map(({ name, points }, i) => (
+          <motion.article
+            key={name}
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.5, delay: (i % 4) * 0.05, ease: [0.22, 1, 0.36, 1] }}
+            className="border border-[#8C6D4F]/30 bg-[#0D0B09] p-5 transition-colors hover:border-[#5B9BD5]/60"
+          >
+            <h4 className="font-display text-2xl leading-tight text-[#9CC7F2]">{name}</h4>
+            <ul className="mt-3 grid gap-1.5 text-sm leading-snug text-[#CFC2B5]">
+              {points.map((p) => (
+                <li key={p} className="flex gap-2">
+                  <span
+                    aria-hidden="true"
+                    className="mt-[0.5em] h-1.5 w-1.5 shrink-0 rotate-45 bg-[#5B9BD5]"
+                  />
+                  <span>{p}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.article>
+        ))}
+      </div>
       <div className="grid gap-px border border-[#8C6D4F]/30 bg-[#8C6D4F]/30 sm:grid-cols-2 lg:grid-cols-3">
         {skillGroups.map((group, i) => (
           <motion.article
@@ -153,7 +221,7 @@ export const SkillsSection: React.FC = () => (
               {group.detail.split(" · ").map((skill) => (
                 <li
                   key={skill}
-                  className="border border-[#8C6D4F]/30 bg-black/30 px-2 py-1 text-[11px] leading-tight text-[#D9D0C8]"
+                  className={`border px-2 py-1 text-[11px] leading-tight ${AZURE_TERMS.test(skill) ? "border-[#5B9BD5]/50 bg-[#5B9BD5]/10 text-[#B9D8F5]" : "border-[#8C6D4F]/30 bg-black/30 text-[#D9D0C8]"}`}
                 >
                   {skill}
                 </li>
@@ -172,7 +240,10 @@ export const SkillsSection: React.FC = () => (
           "Microsoft Intune",
           "Defender for Endpoint",
         ].map((skill) => (
-          <li key={skill} className="border border-[#8C6D4F]/25 px-2.5 py-1">
+          <li
+            key={skill}
+            className={`border px-2 py-1 text-[11px] leading-tight ${AZURE_TERMS.test(skill) ? "border-[#5B9BD5]/50 bg-[#5B9BD5]/10 text-[#B9D8F5]" : "border-[#8C6D4F]/30 bg-black/30 text-[#D9D0C8]"}`}
+          >
             {skill}
           </li>
         ))}

@@ -104,10 +104,10 @@ export const Header: React.FC = () => {
           href="#hero"
           onClick={goToTop}
           aria-label="Deepak Dongare — back to top"
-          className="inline-flex items-center py-2.5 -my-2.5 text-xs sm:text-sm font-semibold tracking-[0.35em] uppercase text-[#EAD8C7] hover:opacity-75 transition-opacity"
+          className="inline-flex items-center py-2.5 -my-2.5 text-xs sm:text-sm font-semibold tracking-[0.22em] uppercase text-[#EAD8C7] hover:opacity-75 transition-opacity"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
-          DEEPAK.
+          DEEPAK DONGARE
         </a>
 
         {/* Navigation Links (Desktop) */}

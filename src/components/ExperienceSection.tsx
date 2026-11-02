@@ -15,11 +15,21 @@ const roles: {
     period: "AUG 2023 — SEP 2026",
     role: "SENIOR CLOUD SECURITY ENGINEER",
     company: "REALTHINGKS INDIA PRIVATE LIMITED · PUNE, INDIA",
-    tags: ["Azure Security", "Entra ID", "TISAX AL2", "Sophos XDR", "Automation"],
+    tags: [
+      "Azure Security",
+      "Entra ID",
+      "Defender",
+      "Intune",
+      "TISAX AL2",
+      "Sophos XDR",
+      "Automation",
+    ],
     metrics: [
       ["230–240", "Users secured"],
       ["260+", "Endpoints"],
       ["10+", "Apps on SSO"],
+      ["20", "Shared devices"],
+      ["5", "On-prem servers"],
       ["AL2", "TISAX led"],
     ],
     groups: [
@@ -65,6 +75,7 @@ const roles: {
           "Protected 260+ endpoints and 20 shared devices with Intercept X XDR, DLP, BitLocker",
           "Triaged Sophos Central alerts and ran root cause analysis",
           "Ran Nessus scans and Wireshark analysis; tracked patching",
+          "Used Microsoft Intune and Defender for Endpoint for device management and endpoint protection",
         ],
       },
       {
@@ -164,16 +175,12 @@ const roles: {
 ];
 
 const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
-const VISIBLE_GROUPS = 4;
 
 const RoleGroups: React.FC<{ groups: Group[] }> = ({ groups }) => {
-  const [open, setOpen] = React.useState(false);
-  const hidden = groups.length - VISIBLE_GROUPS;
-  const shown = open || hidden <= 0 ? groups : groups.slice(0, VISIBLE_GROUPS);
   return (
     <>
       <div className="mt-6 grid gap-6 md:grid-cols-2">
-        {shown.map((g) => (
+        {groups.map((g) => (
           <div key={g.label}>
             <h4 className="mb-2 font-mono text-[10px] uppercase tracking-[0.25em] text-[#B39169]">
               {g.label}
@@ -192,16 +199,6 @@ const RoleGroups: React.FC<{ groups: Group[] }> = ({ groups }) => {
           </div>
         ))}
       </div>
-      {hidden > 0 && (
-        <button
-          type="button"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-          className="mt-6 min-h-[44px] border border-[#8C6D4F]/50 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-[#E6C27D] transition-colors hover:border-[#D4AF37] hover:text-white"
-        >
-          {open ? "Show less" : `Show ${hidden} more ${hidden === 1 ? "area" : "areas"}`}
-        </button>
-      )}
     </>
   );
 };
@@ -278,7 +275,9 @@ export const ExperienceSection: React.FC = () => (
             </ul>
 
             {role.metrics.length > 0 && (
-              <ul className="mt-5 grid grid-cols-2 gap-px overflow-hidden border border-[#8C6D4F]/25 bg-[#8C6D4F]/25 sm:grid-cols-4">
+              <ul
+                className={`mt-5 grid grid-cols-2 gap-px overflow-hidden border border-[#8C6D4F]/25 bg-[#8C6D4F]/25 ${role.metrics.length > 4 ? "sm:grid-cols-3 lg:grid-cols-6" : "sm:grid-cols-4"}`}
+              >
                 {role.metrics.map(([v, l], k) => (
                   <motion.li
                     key={l}
