@@ -142,3 +142,98 @@
     color: var(--color-foreground);
   }
 }
+
+/* ============ Design tokens ============ */
+:root {
+  /* Surfaces */
+  --ink: #000000;
+  --surface: #0a0806;
+  --surface-raised: #100d0b;
+  --surface-chip: #1a1511;
+
+  /* Ink / text */
+  --ivory: #e8dfd8;
+  --ivory-bright: #f5ede4;
+
+  /* Gold accents */
+  --gold: #d4af37;
+  --gold-light: #f5d59a;
+  --gold-pale: #fff5dc;
+  --bronze: #8c6d4f;
+
+  /* Type roles */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+  --font-script: 'Herr Von Muellerhoff', cursive;
+
+  /* Layout */
+  --nav-height: 4.5rem;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: var(--ink);
+  color: var(--ivory);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Keep anchor targets clear of the fixed navigation bar. */
+section[id] {
+  scroll-margin-top: var(--nav-height);
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--surface-raised);
+  border: 1px solid var(--gold);
+  color: var(--ivory-bright);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
