@@ -1,14 +1,13 @@
-// @ts-nocheck -- imported portfolio code written for a less strict TS config
-import React, { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { scrollToTarget } from '../lib/lenis';
+import React, { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { scrollToTarget } from "../lib/lenis";
 
 const navItems = [
-  { name: 'ABOUT', id: 'about' },
-  { name: 'PROJECTS', id: 'work' },
-  { name: 'SKILLS', id: 'skills' },
-  { name: 'EXPERIENCE', id: 'experience' },
-  { name: 'CONTACT', id: 'contact' },
+  { name: "ABOUT", id: "about" },
+  { name: "SKILLS", id: "skills" },
+  { name: "EXPERIENCE", id: "experience" },
+  { name: "FOCUS", id: "work" },
+  { name: "CONTACT", id: "contact" },
 ];
 
 // Matches --nav-height in index.css: how far a target section should sit
@@ -28,8 +27,8 @@ export const Header: React.FC = () => {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   // Lock the page's real scrolling element while the drawer is open. This
@@ -39,7 +38,7 @@ export const Header: React.FC = () => {
     if (!mobileMenuOpen) return;
     const root = document.documentElement;
     const prevOverflow = root.style.overflow;
-    root.style.overflow = 'hidden';
+    root.style.overflow = "hidden";
     return () => {
       root.style.overflow = prevOverflow;
     };
@@ -53,17 +52,17 @@ export const Header: React.FC = () => {
       firstLinkRef.current?.focus();
 
       const onKeyDown = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') {
+        if (e.key === "Escape") {
           setMobileMenuOpen(false);
           return;
         }
-        if (e.key !== 'Tab' || !drawerRef.current) return;
+        if (e.key !== "Tab" || !drawerRef.current) return;
         const focusables = drawerRef.current.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled])'
+          "a[href], button:not([disabled])",
         );
         if (!focusables.length) return;
-        const first = focusables[0];
-        const last = focusables[focusables.length - 1];
+        const first = focusables[0]!;
+        const last = focusables[focusables.length - 1]!;
         if (e.shiftKey && document.activeElement === first) {
           e.preventDefault();
           last.focus();
@@ -72,13 +71,14 @@ export const Header: React.FC = () => {
           first.focus();
         }
       };
-      window.addEventListener('keydown', onKeyDown);
-      return () => window.removeEventListener('keydown', onKeyDown);
+      window.addEventListener("keydown", onKeyDown);
+      return () => window.removeEventListener("keydown", onKeyDown);
     }
     if (wasOpenRef.current) {
       wasOpenRef.current = false;
       toggleRef.current?.focus();
     }
+    return undefined;
   }, [mobileMenuOpen]);
 
   const goTo = (id: string) => (e: React.MouseEvent) => {
@@ -96,7 +96,7 @@ export const Header: React.FC = () => {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        scrolled ? 'bg-black/85 backdrop-blur-md border-b border-[#8C6D4F]/25' : 'bg-transparent'
+        scrolled ? "bg-black/85 backdrop-blur-md border-b border-[#8C6D4F]/25" : "bg-transparent"
       }`}
     >
       <div className="flex items-center justify-between w-full px-4 sm:px-12 lg:px-16 py-4 sm:py-4">
@@ -113,7 +113,7 @@ export const Header: React.FC = () => {
         {/* Navigation Links (Desktop) */}
         <nav
           aria-label="Primary"
-          className="hidden md:flex items-center space-x-8 lg:space-x-10 text-xs sm:text-[13px] tracking-[0.22em] font-medium uppercase text-[#EAE0D5] absolute left-1/2 -translate-x-1/2"
+          className="hidden lg:flex items-center space-x-8 xl:space-x-10 text-xs sm:text-[13px] tracking-[0.22em] font-medium uppercase text-[#EAE0D5] absolute left-1/2 -translate-x-1/2"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
           {navItems.map((item) => (
@@ -130,11 +130,11 @@ export const Header: React.FC = () => {
         </nav>
 
         {/* Right Action & Mobile Toggle */}
-        <div className="flex items-center space-x-2.5 sm:space-x-3 ml-auto md:ml-0">
+        <div className="flex items-center space-x-2.5 sm:space-x-3 ml-auto lg:ml-0">
           <a
             href="#contact"
-            onClick={goTo('contact')}
-            className="group hidden sm:flex items-center space-x-2 text-xs sm:text-[12.5px] tracking-[0.22em] font-semibold uppercase py-2.5 px-4 border border-[#D4AF37]/60 hover:border-[#D4AF37] bg-[#16120E]/90 hover:bg-[#D4AF37] text-white hover:text-black transition-all duration-300 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.15)]"
+            onClick={goTo("contact")}
+            className="group hidden lg:flex items-center space-x-2 text-xs sm:text-[12.5px] tracking-[0.22em] font-semibold uppercase py-2.5 px-4 border border-[#D4AF37]/60 hover:border-[#D4AF37] bg-[#16120E]/90 hover:bg-[#D4AF37] text-white hover:text-black transition-all duration-300 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.15)]"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
             <span>LET&apos;S TALK</span>
@@ -148,15 +148,21 @@ export const Header: React.FC = () => {
             ref={toggleRef}
             type="button"
             onClick={() => setMobileMenuOpen((v) => !v)}
-            className="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center text-[#EAD8C7] hover:text-[#D4AF37] focus-visible:outline-2 focus-visible:outline-[#D4AF37] z-50"
-            aria-label={mobileMenuOpen ? 'Close navigation' : 'Open navigation'}
+            className="lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center text-[#EAD8C7] hover:text-[#D4AF37] focus-visible:outline-2 focus-visible:outline-[#D4AF37] z-50"
+            aria-label={mobileMenuOpen ? "Close navigation" : "Open navigation"}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-nav-drawer"
           >
             <div className="w-6 h-4 flex flex-col justify-between items-end">
-              <span className={`h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? 'w-6 rotate-45 translate-y-1.5 bg-[#D4AF37]' : 'w-6'}`} />
-              <span className={`h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : 'w-4'}`} />
-              <span className={`h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? 'w-6 -rotate-45 -translate-y-1.5 bg-[#D4AF37]' : 'w-5'}`} />
+              <span
+                className={`h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? "w-6 rotate-45 translate-y-1.5 bg-[#D4AF37]" : "w-6"}`}
+              />
+              <span
+                className={`h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? "opacity-0" : "w-4"}`}
+              />
+              <span
+                className={`h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? "w-6 -rotate-45 -translate-y-1.5 bg-[#D4AF37]" : "w-5"}`}
+              />
             </div>
           </button>
         </div>
@@ -173,9 +179,9 @@ export const Header: React.FC = () => {
             aria-label="Mobile navigation"
             initial={reduceMotion ? false : { opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={reduceMotion ? undefined : { opacity: 0, y: -15 }}
+            exit={reduceMotion ? {} : { opacity: 0, y: -15 }}
             transition={{ duration: reduceMotion ? 0 : 0.25 }}
-            className="fixed inset-0 z-40 bg-[#0A0806]/98 backdrop-blur-3xl flex flex-col justify-between p-6 pt-24 md:hidden"
+            className="fixed inset-0 z-40 bg-[#0A0806]/98 backdrop-blur-3xl flex flex-col justify-between p-6 pt-24 lg:hidden"
           >
             <nav aria-label="Mobile primary" className="flex flex-col space-y-4">
               {navItems.map((item, idx) => (
@@ -196,7 +202,7 @@ export const Header: React.FC = () => {
             <div className="space-y-3 pt-6 border-t border-[#8C6D4F]/30 pb-4">
               <a
                 href="#contact"
-                onClick={goTo('contact')}
+                onClick={goTo("contact")}
                 className="w-full py-3.5 border border-[#D4AF37] bg-[#D4AF37]/10 text-[#F7E7C4] text-xs font-medium tracking-[0.25em] uppercase text-center block"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >

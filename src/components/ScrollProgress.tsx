@@ -1,11 +1,14 @@
-// @ts-nocheck -- imported portfolio code written for a less strict TS config
-import React from 'react';
-import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
+import React from "react";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 
 export const ScrollProgress: React.FC = () => {
   const { scrollYProgress } = useScroll();
   const reduceMotion = useReducedMotion();
-  const easedProgress = useSpring(scrollYProgress, { stiffness: 140, damping: 32, restDelta: 0.001 });
+  const easedProgress = useSpring(scrollYProgress, {
+    stiffness: 140,
+    damping: 32,
+    restDelta: 0.001,
+  });
 
   return (
     <motion.div

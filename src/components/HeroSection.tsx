@@ -1,9 +1,8 @@
-// @ts-nocheck -- imported portfolio code written for a less strict TS config
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, useMotionValue } from 'framer-motion';
-import type { Variants } from 'framer-motion';
-import watermarkImg from '../assets/dd-insignia.svg';
-import { scrollToTarget } from '../lib/lenis';
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useMotionValue } from "framer-motion";
+import type { Variants } from "framer-motion";
+import watermarkImg from "../assets/dd-insignia.svg";
+import { scrollToTarget } from "../lib/lenis";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -17,11 +16,11 @@ const containerVariants: Variants = {
 };
 
 const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 18, filter: 'blur(6px)' },
+  hidden: { opacity: 0, y: 18, filter: "blur(6px)" },
   visible: {
     opacity: 1,
     y: 0,
-    filter: 'blur(0px)',
+    filter: "blur(0px)",
     transition: {
       duration: 1.1,
       ease: [0.16, 1, 0.3, 1],
@@ -39,17 +38,19 @@ export const HeroSection: React.FC = () => {
   const hasLeftHeroRef = useRef(false);
   const [isInHero, setIsInHero] = useState(true);
   const [videoFailed, setVideoFailed] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() =>
-    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
   );
 
   useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const onChange = () => setPrefersReducedMotion(mq.matches);
-    if (mq.addEventListener) mq.addEventListener('change', onChange);
+    if (mq.addEventListener) mq.addEventListener("change", onChange);
     else mq.addListener?.(onChange);
     return () => {
-      if (mq.removeEventListener) mq.removeEventListener('change', onChange);
+      if (mq.removeEventListener) mq.removeEventListener("change", onChange);
       else mq.removeListener?.(onChange);
     };
   }, []);
@@ -103,7 +104,7 @@ export const HeroSection: React.FC = () => {
           }
         });
       },
-      { threshold: 0.25 }
+      { threshold: 0.25 },
     );
 
     observer.observe(heroEl);
@@ -116,17 +117,16 @@ export const HeroSection: React.FC = () => {
       cursorY.set(e.clientY);
       setCursorReady(true);
     };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [cursorX, cursorY]);
-
 
   return (
     <section
       ref={sectionRef}
       id="hero"
       className={`relative w-full min-h-[100svh] overflow-hidden bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black cursor-default ${
-        isInHero && cursorReady && !prefersReducedMotion ? 'lg:cursor-none' : ''
+        isInHero && cursorReady && !prefersReducedMotion ? "lg:cursor-none" : ""
       }`}
     >
       {/* ================= 1. MINIMAL CUSTOM CURSOR (DESKTOP ONLY) ================= */}
@@ -137,17 +137,19 @@ export const HeroSection: React.FC = () => {
           animate={{
             width: isHovered ? 48 : 10,
             height: isHovered ? 48 : 10,
-            backgroundColor: isHovered ? 'rgba(212, 175, 55, 0.1)' : 'rgba(235, 215, 195, 0.95)',
+            backgroundColor: isHovered ? "rgba(212, 175, 55, 0.1)" : "rgba(235, 215, 195, 0.95)",
           }}
-          transition={{ type: 'spring', damping: 30, stiffness: 350, mass: 0.5 }}
+          transition={{ type: "spring", damping: 30, stiffness: 350, mass: 0.5 }}
         />
       )}
 
       {/* ================= 2. CINEMATIC VIDEO HERO VISUAL LAYER ================= */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-black flex items-center justify-end">
         <motion.div
-          animate={prefersReducedMotion ? undefined : { scale: [1, 1.015, 1] }}
-          transition={prefersReducedMotion ? undefined : { duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          animate={prefersReducedMotion ? {} : { scale: [1, 1.015, 1] }}
+          transition={
+            prefersReducedMotion ? {} : { duration: 10, repeat: Infinity, ease: "easeInOut" }
+          }
           className="relative h-[100svh] w-full sm:w-[90vw] md:w-[75vw] lg:w-[62vw] xl:w-[58vw] 2xl:w-[54vw] flex items-center justify-end overflow-hidden"
         >
           {/* Reduced motion: skip the autoplaying 1.9MB video entirely and
@@ -200,8 +202,10 @@ export const HeroSection: React.FC = () => {
             <div className="absolute w-36 h-36 bg-black/85 rounded-full blur-xl" />
 
             <motion.div
-              animate={prefersReducedMotion ? undefined : { y: [-3, 3, -3], scale: [1, 1.03, 1] }}
-              transition={prefersReducedMotion ? undefined : { duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+              animate={prefersReducedMotion ? {} : { y: [-3, 3, -3], scale: [1, 1.03, 1] }}
+              transition={
+                prefersReducedMotion ? {} : { duration: 4.5, repeat: Infinity, ease: "easeInOut" }
+              }
               className="relative flex items-center justify-center"
             >
               <img
@@ -219,7 +223,6 @@ export const HeroSection: React.FC = () => {
       <div className="relative z-10 flex flex-col justify-between h-full min-h-screen w-full px-4 sm:px-12 lg:px-16 pt-24 sm:pt-28 pb-8 pointer-events-none">
         {/* Main Hero Row */}
         <div className="relative flex flex-col md:flex-row items-center justify-between w-full pt-4 pb-2 my-auto">
-          
           {/* LEFT: Balanced Headline & Actions */}
           <motion.div
             variants={containerVariants}
@@ -235,17 +238,26 @@ export const HeroSection: React.FC = () => {
                 aria-label="Senior Cloud Security Engineer"
               >
                 {/* Line 1: ENTERPRISE */}
-                <span aria-hidden="true" className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#F4EFEA] to-[#D8CEC4] drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+                <span
+                  aria-hidden="true"
+                  className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#F4EFEA] to-[#D8CEC4] drop-shadow-[0_4px_16px_rgba(0,0,0,0.9)]"
+                >
                   CLOUD SECURITY
                 </span>
 
                 {/* Line 2: CLOUD & IAM */}
-                <span aria-hidden="true" className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFF5DC] via-[#F5D59A] to-[#D4A95D] drop-shadow-[0_8px_25px_rgba(212,169,93,0.4)]">
+                <span
+                  aria-hidden="true"
+                  className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFF5DC] via-[#F5D59A] to-[#D4A95D] drop-shadow-[0_8px_25px_rgba(212,169,93,0.4)]"
+                >
                   ENGINEER
                 </span>
 
                 {/* Line 3: ROLE SPECIALTIES */}
-                <span aria-hidden="true" className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E2BF] via-[#E2BE80] to-[#BE9656] drop-shadow-[0_10px_30px_rgba(190,150,86,0.45)]">
+                <span
+                  aria-hidden="true"
+                  className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E2BF] via-[#E2BE80] to-[#BE9656] drop-shadow-[0_10px_30px_rgba(190,150,86,0.45)]"
+                >
                   AZURE &amp; IAM
                 </span>
               </h1>
@@ -257,7 +269,9 @@ export const HeroSection: React.FC = () => {
                 className="flex flex-wrap gap-x-3 gap-y-1 text-xs sm:text-[13px] md:text-sm font-semibold tracking-[0.14em] uppercase text-[#F3E6D8] leading-relaxed"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
-                <li>• Azure security</li><li>• Identity and access</li><li>• Cybersecurity</li>
+                <li>• Azure security</li>
+                <li>• Identity and access</li>
+                <li>• Cybersecurity</li>
               </ul>
             </motion.div>
 
@@ -268,9 +282,18 @@ export const HeroSection: React.FC = () => {
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
               <ul className="grid gap-2">
-                <li className="flex gap-2"><span className="text-[#D4AF37]">•</span><span>10 years in IT · 7+ years in Azure</span></li>
-                <li className="flex gap-2"><span className="text-[#D4AF37]">•</span><span>Entra ID · cloud security · endpoint defense</span></li>
-                <li className="flex gap-2"><span className="text-[#D4AF37]">•</span><span>Security automation · TISAX Level 2</span></li>
+                <li className="flex gap-2">
+                  <span className="text-[#D4AF37]">•</span>
+                  <span>10 years in IT · 7+ years in Azure</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-[#D4AF37]">•</span>
+                  <span>Entra ID · cloud security · endpoint defense</span>
+                </li>
+                <li className="flex gap-2">
+                  <span className="text-[#D4AF37]">•</span>
+                  <span>Security automation · TISAX Level 2</span>
+                </li>
               </ul>
             </motion.div>
 
@@ -285,7 +308,7 @@ export const HeroSection: React.FC = () => {
                 href="#work"
                 onClick={(event) => {
                   event.preventDefault();
-                  scrollToTarget('work', -72);
+                  scrollToTarget("work", -72);
                 }}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
@@ -316,11 +339,15 @@ export const HeroSection: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          <div className="absolute right-4 top-1/2 z-20 hidden -translate-y-1/2 xl:block" role="group" aria-label="Selected security experience">
+          <div
+            className="absolute right-4 top-1/2 z-20 hidden -translate-y-1/2 xl:block"
+            role="group"
+            aria-label="Selected security experience"
+          >
             {[
-              { label: 'IDENTITY', value: '230–240 USERS', target: 'experience', y: 0 },
-              { label: 'ENDPOINTS', value: '260+ DEVICES', target: 'experience', y: 1 },
-              { label: 'ASSURANCE', value: 'TISAX LEVEL 2', target: 'skills', y: 2 },
+              { label: "IDENTITY", value: "230–240 USERS", target: "experience", y: 0 },
+              { label: "ENDPOINTS", value: "260+ DEVICES", target: "experience", y: 1 },
+              { label: "ASSURANCE", value: "TISAX LEVEL 2", target: "skills", y: 2 },
             ].map((item, index) => (
               <motion.a
                 key={item.label}
@@ -330,14 +357,28 @@ export const HeroSection: React.FC = () => {
                   scrollToTarget(item.target, -72);
                 }}
                 initial={prefersReducedMotion ? false : { opacity: 0, x: 24 }}
-                animate={prefersReducedMotion ? undefined : { opacity: 1, x: [0, 4, 0], y: [0, index % 2 ? 3 : -3, 0] }}
-                transition={prefersReducedMotion ? undefined : { opacity: { delay: 0.6 + index * 0.16, duration: 0.5 }, x: { duration: 6 + index, repeat: Infinity, ease: 'easeInOut' }, y: { duration: 5 + index, repeat: Infinity, ease: 'easeInOut' } }}
-                whileHover={prefersReducedMotion ? undefined : { x: -8, scale: 1.04 }}
+                animate={
+                  prefersReducedMotion
+                    ? {}
+                    : { opacity: 1, x: [0, 4, 0], y: [0, index % 2 ? 3 : -3, 0] }
+                }
+                transition={
+                  prefersReducedMotion
+                    ? {}
+                    : {
+                        opacity: { delay: 0.6 + index * 0.16, duration: 0.5 },
+                        x: { duration: 6 + index, repeat: Infinity, ease: "easeInOut" },
+                        y: { duration: 5 + index, repeat: Infinity, ease: "easeInOut" },
+                      }
+                }
+                whileHover={prefersReducedMotion ? {} : { x: -8, scale: 1.04 }}
                 whileTap={{ scale: 0.98 }}
-                className={`relative mb-3 block w-52 rounded-sm border border-[#D4AF37]/40 bg-[#090807]/85 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.4)] backdrop-blur-md transition-colors hover:border-[#F5D59A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#F5D59A] ${index === 1 ? 'xl:ml-5' : index === 2 ? 'xl:ml-2' : ''}`}
+                className={`relative mb-3 block w-52 rounded-sm border border-[#D4AF37]/40 bg-[#090807]/85 p-4 shadow-[0_12px_36px_rgba(0,0,0,0.4)] backdrop-blur-md transition-colors hover:border-[#F5D59A] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#F5D59A] ${index === 1 ? "xl:ml-5" : index === 2 ? "xl:ml-2" : ""}`}
                 aria-label={`${item.label}: ${item.value}. View experience.`}
               >
-                <span className="block font-mono text-[10px] tracking-[0.22em] text-[#C9A96E]">0{index + 1} / {item.label}</span>
+                <span className="block font-mono text-[10px] tracking-[0.22em] text-[#C9A96E]">
+                  0{index + 1} / {item.label}
+                </span>
                 <span className="mt-1 block font-display text-xl text-white">{item.value}</span>
               </motion.a>
             ))}

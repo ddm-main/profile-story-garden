@@ -1,8 +1,7 @@
-// @ts-nocheck -- imported portfolio code written for a less strict TS config
-import React, { useLayoutEffect, useRef, useCallback, useState, useEffect } from 'react';
-import type Lenis from 'lenis';
-import { getLenis, destroyLenis } from '../lib/lenis';
-import './ScrollStack.css';
+import React, { useLayoutEffect, useRef, useCallback, useState, useEffect } from "react";
+import type Lenis from "lenis";
+import { getLenis, destroyLenis } from "../lib/lenis";
+import "./ScrollStack.css";
 
 export interface ScrollStackItemProps {
   children: React.ReactNode;
@@ -11,10 +10,8 @@ export interface ScrollStackItemProps {
 
 export const ScrollStackItem: React.FC<ScrollStackItemProps> = ({
   children,
-  itemClassName = '',
-}) => (
-  <div className={`scroll-stack-card ${itemClassName}`.trim()}>{children}</div>
-);
+  itemClassName = "",
+}) => <div className={`scroll-stack-card ${itemClassName}`.trim()}>{children}</div>;
 
 export interface ScrollStackProps {
   children: React.ReactNode;
@@ -33,12 +30,12 @@ export interface ScrollStackProps {
 
 const ScrollStack: React.FC<ScrollStackProps> = ({
   children,
-  className = '',
+  className = "",
   itemDistance = 80,
   itemScale = 0.03,
   itemStackDistance = 32,
-  stackPosition = '15%',
-  scaleEndPosition = '8%',
+  stackPosition = "15%",
+  scaleEndPosition = "8%",
   baseScale = 0.88,
   rotationAmount = 0,
   blurAmount = 0,
@@ -60,10 +57,10 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   }, []);
 
   const parsePercentage = useCallback((value: string | number, containerHeight: number) => {
-    if (typeof value === 'string' && value.includes('%')) {
+    if (typeof value === "string" && value.includes("%")) {
       return (parseFloat(value) / 100) * containerHeight;
     }
-    return typeof value === 'number' ? value : parseFloat(value);
+    return typeof value === "number" ? value : parseFloat(value);
   }, []);
 
   const getScrollData = useCallback(() => {
@@ -91,12 +88,10 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     const scaleEndPositionPx = parsePercentage(scaleEndPosition, containerHeight);
 
     const endElement = scrollerRef.current?.querySelector(
-      '.scroll-stack-end'
+      ".scroll-stack-end",
     ) as HTMLElement | null;
 
-    const endElementTop = endElement
-      ? endElement.getBoundingClientRect().top + window.scrollY
-      : 0;
+    const endElementTop = endElement ? endElement.getBoundingClientRect().top + window.scrollY : 0;
 
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
@@ -155,7 +150,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
       if (hasChanged) {
         const transform = `translate3d(0, ${newTransform.translateY}px, 0) scale(${newTransform.scale}) rotate(${newTransform.rotation}deg)`;
-        const filter = newTransform.blur > 0 ? `blur(${newTransform.blur}px)` : '';
+        const filter = newTransform.blur > 0 ? `blur(${newTransform.blur}px)` : "";
 
         card.style.transform = transform;
         card.style.filter = filter;
@@ -194,22 +189,22 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
   }, [updateCardTransforms]);
 
   const [isMobile, setIsMobile] = useState(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       return window.innerWidth < 1024;
     }
     return false;
   });
 
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   });
 
   useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
     const onChange = () => setPrefersReducedMotion(mq.matches);
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
   }, []);
 
   // Bumped on any resize (not just when the mobile breakpoint is crossed)
@@ -224,22 +219,22 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => setLayoutVersion((v) => v + 1));
     };
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
-    if (typeof document !== 'undefined' && 'fonts' in document) {
+    if (typeof document !== "undefined" && "fonts" in document) {
       document.fonts.ready.then(() => setLayoutVersion((v) => v + 1)).catch(() => {});
     }
 
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   const setupLenis = useCallback(() => {
     const lenis = getLenis();
     if (!lenis) return null;
-    lenis.on('scroll', handleScroll);
+    lenis.on("scroll", handleScroll);
     lenisRef.current = lenis;
     return lenis;
   }, [handleScroll]);
@@ -249,21 +244,19 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     if (!scroller) return;
 
     const lastTransforms = lastTransformsRef.current;
-    const inner = scroller.querySelector('.scroll-stack-inner') as HTMLElement | null;
-    const cards = Array.from(
-      scroller.querySelectorAll('.scroll-stack-card')
-    ) as HTMLElement[];
+    const inner = scroller.querySelector(".scroll-stack-inner") as HTMLElement | null;
+    const cards = Array.from(scroller.querySelectorAll(".scroll-stack-card")) as HTMLElement[];
 
     cardsRef.current = cards;
 
     if (isMobile || prefersReducedMotion) {
-      if (inner) inner.style.paddingBottom = '0px';
+      if (inner) inner.style.paddingBottom = "0px";
       cards.forEach((card, i) => {
-        card.style.transform = 'none';
-        card.style.filter = 'none';
-        card.style.zIndex = 'auto';
-        card.style.marginBottom = i < cards.length - 1 ? '20px' : '0px';
-        card.style.willChange = 'auto';
+        card.style.transform = "none";
+        card.style.filter = "none";
+        card.style.zIndex = "auto";
+        card.style.marginBottom = i < cards.length - 1 ? "20px" : "0px";
+        card.style.willChange = "auto";
       });
       return;
     }
@@ -279,11 +272,11 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
       if (i < cards.length - 1) {
         card.style.marginBottom = `${itemDistance}px`;
       }
-      card.style.willChange = 'transform, filter';
-      card.style.transformOrigin = 'top center';
-      card.style.backfaceVisibility = 'hidden';
-      card.style.transform = 'translateZ(0)';
-      card.style.perspective = '1000px';
+      card.style.willChange = "transform, filter";
+      card.style.transformOrigin = "top center";
+      card.style.backfaceVisibility = "hidden";
+      card.style.transform = "translateZ(0)";
+      card.style.perspective = "1000px";
     });
 
     // Runway derived from the measured last card instead of a fixed 40vh,
@@ -291,7 +284,9 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
     if (inner) {
       const lastCard = cards[cards.length - 1];
       const runway = lastCard
-        ? Math.round(lastCard.getBoundingClientRect().height * 0.5 + itemStackDistance * cards.length)
+        ? Math.round(
+            lastCard.getBoundingClientRect().height * 0.5 + itemStackDistance * cards.length,
+          )
         : 0;
       inner.style.paddingBottom = `${runway}px`;
     }
@@ -301,7 +296,7 @@ const ScrollStack: React.FC<ScrollStackProps> = ({
 
     return () => {
       if (lenisRef.current) {
-        lenisRef.current.off('scroll', handleScroll);
+        lenisRef.current.off("scroll", handleScroll);
         lenisRef.current = null;
       }
       destroyLenis();
