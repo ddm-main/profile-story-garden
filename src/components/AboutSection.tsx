@@ -153,10 +153,10 @@ export const AboutSection: React.FC = () => {
               {[
                 "Pune, India · Senior Cloud Security Engineer",
                 "10 years in IT · 7+ years in Azure",
-                "Entra ID · cloud and network security · endpoint defense",
-                "230–240 users · 260+ endpoints · 20 shared devices · 5 on-prem servers",
-                "TISAX Assessment Level 2 · security governance",
-                "PowerShell and Python security reporting automation",
+                "Entra ID · Azure and network security · endpoint protection",
+                "250+ users and endpoints at RealThingks · 450+ at FinIQ",
+                "Led TISAX Assessment Level 2 (AL2)",
+                "Ransomware response: 11 of 450 systems contained (FinIQ, 2022)",
               ].map((item) => (
                 <li key={item} className="flex gap-2.5">
                   <span
@@ -182,7 +182,7 @@ export const AboutSection: React.FC = () => {
                   AL2
                 </span>
                 <span className="text-[11px] sm:text-xs font-semibold tracking-[0.16em] uppercase text-[#F0E6DC] mt-1">
-                  TISAX Led
+                  TISAX led
                 </span>
               </div>
 
@@ -195,7 +195,7 @@ export const AboutSection: React.FC = () => {
                   100+
                 </span>
                 <span className="text-[11px] sm:text-xs font-semibold tracking-[0.16em] uppercase text-[#F0E6DC] mt-1">
-                  Azure VMs
+                  Azure VMs (FinIQ)
                 </span>
               </div>
 
@@ -212,7 +212,7 @@ export const AboutSection: React.FC = () => {
                   SC-500
                 </span>
                 <span className="text-[11px] sm:text-xs font-semibold tracking-[0.16em] uppercase text-[#F0E6DC] mt-1">
-                  Microsoft Certified ↓
+                  Microsoft Certified <span aria-hidden="true">↓</span>
                 </span>
               </a>
 

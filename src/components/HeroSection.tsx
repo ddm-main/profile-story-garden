@@ -161,7 +161,8 @@ export const HeroSection: React.FC = () => {
               ref={videoRef}
               muted
               playsInline
-              preload="auto"
+              preload="metadata"
+              poster="/deepak-cut.webp"
               onTimeUpdate={handleTimeUpdate}
               onEnded={handleEnded}
               onError={() => setVideoFailed(true)}
@@ -276,16 +277,29 @@ export const HeroSection: React.FC = () => {
               <ul className="grid gap-2">
                 {[
                   "10 years in IT · 7+ years in Azure",
-                  "Entra ID · cloud security · endpoint defense",
-                  "Building internal apps with AI · Claude, Lovable, Supabase",
+                  "Entra ID · Azure and network security · incident response",
+                  "Microsoft SC-500 certified · led TISAX AL2",
+                  "Builds internal apps with AI · Claude, Lovable, Supabase",
                 ].map((line) => (
                   <li key={line} className="flex gap-2">
-                    <span className="text-[#D4AF37]">•</span>
+                    <span aria-hidden="true" className="mt-[0.5em] h-1.5 w-1.5 shrink-0 rotate-45 bg-[#D4AF37]" />
                     <span>{line}</span>
                   </li>
                 ))}
               </ul>
             </motion.div>
+
+            {/* Availability */}
+            <motion.p
+              variants={fadeUpVariants}
+              className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-[#D4AF37]/40 bg-[#D4AF37]/[0.08] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#F5D59A] sm:text-xs"
+            >
+              <span aria-hidden="true" className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#7FD69B] opacity-70 motion-reduce:hidden" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-[#7FD69B]" />
+              </span>
+              Open to Azure &amp; IAM security roles · Pune or remote · Available immediately
+            </motion.p>
 
             {/* CTA Buttons */}
             <motion.div
@@ -307,8 +321,8 @@ export const HeroSection: React.FC = () => {
               >
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#FFF]/50 to-transparent pointer-events-none" />
                 <span>EXPLORE INITIATIVES</span>
-                <span className="transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-sm font-bold">
-                  ↗
+                <span aria-hidden="true" className="transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-sm font-bold">
+                  ↓
                 </span>
               </motion.a>
 
@@ -322,7 +336,7 @@ export const HeroSection: React.FC = () => {
                 className="relative inline-flex items-center justify-center space-x-2 px-6 sm:px-7 py-3.5 border border-[#C99E5D] bg-[#100D0B] hover:border-[#D4AF37] hover:bg-[#1A1510] text-[#F5EDE4] hover:text-white text-xs sm:text-[13px] font-semibold tracking-[0.22em] uppercase transition-all duration-300 text-center shadow-[0_0_15px_rgba(0,0,0,0.5)]"
               >
                 <span>DOWNLOAD RESUME</span>
-                <span className="transform transition-transform duration-300 group-hover:translate-y-0.5 text-sm font-bold">
+                <span aria-hidden="true" className="transform transition-transform duration-300 group-hover:translate-y-0.5 text-sm font-bold">
                   ↓
                 </span>
               </motion.a>
@@ -340,15 +354,15 @@ export const HeroSection: React.FC = () => {
         >
           {[
             ["10", "Years in IT"],
-            ["7+", "Years Azure"],
-            ["Entra ID", "Identity & Access"],
-            ["Defender", "for Cloud"],
+            ["7+", "Years in Azure"],
+            ["450+", "Users secured"],
+            ["100+", "Azure VMs (FinIQ)"],
           ].map(([value, label]) => (
             <div key={label} className="px-2 first:pl-0 sm:px-4">
               <dd className="font-display text-2xl leading-none text-[#F5D59A] sm:text-3xl">
                 {value}
               </dd>
-              <dt className="mt-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-[#CFC2B5] sm:text-[11px]">
+              <dt className="mt-1 whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.12em] text-[#CFC2B5] sm:text-[11px]">
                 {label}
               </dt>
             </div>
