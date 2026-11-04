@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.deepakd.online/sitemap.xml
+Sitemap: https://deepakd.online/sitemap.xml
