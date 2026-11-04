@@ -14,89 +14,84 @@ const roles: {
   {
     period: "AUG 2023 — SEP 2026",
     role: "SENIOR CLOUD SECURITY ENGINEER",
-    company: "REALTHINGKS INDIA PRIVATE LIMITED · PUNE, INDIA",
-    tags: [
-      "Azure Security",
-      "Entra ID",
-      "Defender",
-      "Intune",
-      "TISAX AL2",
-      "Sophos XDR",
-      "Automation",
-    ],
+    company: "REALTHINGKS INDIA PRIVATE LIMITED (INDIA OPERATIONS CLOSED) · PUNE, INDIA",
+    tags: ["Azure Security", "Entra ID", "Defender for Cloud", "TISAX AL2", "Sophos XDR", "Automation"],
     metrics: [
-      ["230–240", "Users secured"],
-      ["260+", "Endpoints"],
+      ["250+", "Users & endpoints"],
       ["10+", "Apps on SSO"],
-      ["20", "Shared devices"],
-      ["5", "On-prem servers"],
       ["AL2", "TISAX led"],
+      ["Monthly", "Nessus scans"],
+      ["Quarterly", "Awareness training"],
+      ["2", "Person IT team"],
     ],
     groups: [
       {
         label: "Leadership",
         items: [
           "Led a two-person IT team reporting to the Country Head",
-          "Owned Azure security, identity, network and infrastructure decisions",
-          "Led full IT decommissioning at company closure",
+          "Owned Azure security, identity, network and infrastructure for 250+ users and endpoints",
+          "Led decommissioning of services, accounts and hardware",
         ],
       },
       {
         label: "Identity & Access",
         items: [
-          "Administered Entra ID and Active Directory for 10+ applications",
-          "Led MFA rollout across 230–240 users",
+          "Administered Entra ID and Active Directory",
+          "Configured SSO for 10+ apps incl. Microsoft 365, Azure portal and Salesforce",
+          "Led MFA rollout across 250+ users",
           "Managed Conditional Access, RBAC, PIM and access reviews",
-          "Ran joiner, mover and leaver processes",
         ],
       },
       {
         label: "Cloud Security Posture",
         items: [
-          "Managed Azure Firewall, NSGs, Private Endpoints, Key Vault, Azure Policy",
-          "Reviewed Defender for Cloud Secure Score vs CIS Azure & MCSB",
-          "Prioritised risks such as excessive network access and exposed storage",
-          "Tracked remediation through to closure",
+          "Secured Azure with Azure Firewall, NSGs, Private Endpoints, Key Vault and Azure Policy",
+          "Reviewed Defender for Cloud Secure Score against CIS Azure and Microsoft Cloud Security Benchmarks",
+          "Prioritized risks such as open network access",
         ],
       },
       {
         label: "Infrastructure & DR",
         items: [
-          "Managed Azure VMs, storage, VPN Gateway and SSL/TLS certificates",
-          "Reviewed Azure Backup jobs, failures and retention settings",
-          "Supported restore and disaster recovery validation",
+          "Operated Azure VMs, storage, VPN Gateway and SSL and TLS certificates",
+          "Ran Azure Backup and disaster recovery; reviewed backup failures",
         ],
       },
       {
         label: "Network & Endpoint",
         items: [
-          "Configured Sophos Firewall rules, NAT, IPS, web filtering, TLS inspection",
+          "Configured Sophos Firewall rules, NAT, IPS, web filtering and TLS and SSL inspection",
           "Maintained network segmentation and VPNs",
-          "Protected 260+ endpoints and 20 shared devices with Intercept X XDR, DLP, BitLocker",
+          "Protected user endpoints and shared project devices with Sophos Intercept X XDR, DLP, device controls and BitLocker",
           "Triaged Sophos Central alerts and ran root cause analysis",
-          "Ran Nessus scans and Wireshark analysis; tracked patching",
-          "Used Microsoft Intune and Defender for Endpoint for device management and endpoint protection",
+          "Ran monthly Nessus scans and Wireshark analysis; remediated findings",
+        ],
+      },
+      {
+        label: "Awareness & Incidents",
+        items: [
+          "Ran quarterly security awareness training: phishing, social engineering, attack methods",
+          "Handled a CEO-impersonation gift card scam",
         ],
       },
       {
         label: "Compliance",
         items: [
-          "Led TISAX Assessment Level 2 gap assessments",
-          "Prepared audit evidence and drove remediation follow-up",
+          "Led TISAX Assessment Level 2 (AL2) gap assessments",
           "Coordinated with external auditors",
         ],
       },
       {
         label: "Automation",
         items: [
-          "Daily PowerShell/Python checks: backup failures, pending patches",
-          "Weekly reports: missing MFA, inactive accounts, devices without BitLocker",
+          "Daily PowerShell and Python checks: backup failures, pending patches",
+          "Weekly reports: users without MFA registration, inactive accounts, devices without BitLocker",
         ],
       },
       {
         label: "Internal Platforms",
         items: [
-          "Built CRM, skills and IT apps with Claude, Lovable and Supabase",
+          "Built CRM, skills and IT apps with Claude, Lovable and Supabase (login, role-based access)",
           "Replaced Zoho CRM, Asset Tiger and Zoho Desk",
         ],
       },
@@ -106,51 +101,64 @@ const roles: {
     period: "JUN 2018 — AUG 2023",
     role: "NETWORK ENGINEER",
     company: "FINIQ CONSULTING INDIA PRIVATE LIMITED · PUNE, INDIA",
-    tags: ["Banking Clients", "Hybrid Identity", "Azure Networking", "ISO 27001"],
+    tags: ["Banking Clients", "Hybrid Identity", "Azure Networking", "Incident Response", "ISO 27001"],
     metrics: [
+      ["450+", "Users & systems"],
       ["100+", "Azure VMs"],
       ["5 yrs", "Tenure"],
       ["3", "Environments"],
+      ["11/450", "Ransomware contained"],
       ["ISO", "27001 audits"],
     ],
     groups: [
       {
+        label: "Ransomware Response · Feb 2022",
+        items: [
+          "Led end-to-end response to a ransomware incident",
+          "Identified 11 affected systems out of 450 and isolated them",
+          "Removed the malware and restored services",
+          "Documented root cause and lessons learned",
+        ],
+      },
+      {
         label: "Cloud Operations",
         items: [
-          "Administered 100+ Azure VMs across dev, test and production",
-          "Supported banking client workloads with strict access controls",
-          "Managed patching, Azure Backup and Site Recovery",
-          "Validated recovery readiness",
+          "Administered 100+ Azure VMs across development, test and production for banking clients",
+          "Supported 450+ users, endpoints and systems",
+          "Operated storage, patching, Azure Backup and Site Recovery; validated recovery readiness",
         ],
       },
       {
         label: "Hybrid Identity",
         items: [
-          "Managed Entra ID, Entra Connect and Windows Server AD",
-          "Administered Conditional Access, MFA, RBAC and PIM",
+          "Implemented Entra ID, Entra Connect and Windows Server AD",
+          "Conditional Access, MFA for 450+ users, RBAC, PIM (JIT), PAM and SSO",
         ],
       },
       {
-        label: "Networking",
+        label: "Network Security",
         items: [
-          "Supported VNets, NSGs, Azure Firewall, Bastion and VPN",
-          "Maintained LAN and WAN routing to Azure",
+          "Secured VNets with NSGs, Azure Firewall, Bastion and Private Endpoints with Private DNS",
+          "Segmented environments on Zero Trust least-privilege principles",
+          "Connected on-premises to Azure with VPN Gateway and ExpressRoute",
+          "Published web apps through Application Gateway with WAF and Azure Load Balancer",
+          "Used Network Watcher for troubleshooting",
         ],
       },
       {
-        label: "Security & Monitoring",
+        label: "Monitoring & Compliance",
         items: [
           "Monitored with Azure Monitor and Log Analytics",
-          "Used Defender for Cloud, Azure Policy and Key Vault",
-          "Handled incidents and vulnerability remediation",
-          "Participated in ISO 27001 audits and evidence collection",
+          "Acted on Defender for Cloud Secure Score, Azure Policy and CIS recommendations",
+          "Used Key Vault for secrets and SSL certificates",
+          "Ran Nessus scans and supported ISO 27001 audits",
         ],
       },
       {
         label: "Automation",
         items: [
-          "PowerShell, Azure CLI and Azure Automation for admin tasks",
-          "Basic hands-on Intune and Defender for Endpoint",
+          "PowerShell, Azure CLI and Azure Automation",
+          "Basic Intune and Defender for Endpoint",
         ],
       },
     ],
@@ -165,9 +173,8 @@ const roles: {
       {
         label: "IT Support",
         items: [
-          "Supported LAN, WAN, DNS and TCP/IP",
-          "Administered AD accounts and permissions",
-          "Managed backups and Windows systems",
+          "Supported LAN and WAN, DNS and TCP/IP",
+          "Administered Active Directory accounts, permissions and backups",
         ],
       },
     ],
@@ -221,9 +228,8 @@ export const ExperienceSection: React.FC = () => (
           Career experience
         </h2>
         <ul className="grid gap-1.5 text-sm text-[#CFC2B5] md:justify-items-end">
-          <li>• 10 years in IT · 7+ years Azure</li>
-          <li>• 3 companies · Pune, India</li>
-          <li>• Security, identity, network, compliance</li>
+          <li>3 companies · Pune, India</li>
+          <li>Security · identity · network · compliance</li>
         </ul>
       </div>
 
