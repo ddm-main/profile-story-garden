@@ -9,7 +9,7 @@ const channels = [
   {
     label: "LINKEDIN",
     value: "linkedin.com/in/deepak-dongare",
-    href: "https://linkedin.com/in/deepak-dongare",
+    href: "https://www.linkedin.com/in/deepak-dongare",
     external: true,
   },
 ];
@@ -178,7 +178,7 @@ export const ContactSection: React.FC = () => {
                     type="submit"
                     className="w-full border-2 border-[#D4AF37] bg-[#18130E] py-4 text-xs font-bold uppercase tracking-[0.25em] text-white transition-all duration-300 hover:bg-[#D4AF37] hover:text-black sm:text-[13px]"
                   >
-                    OPEN EMAIL DRAFT ↗
+                    OPEN IN MY EMAIL APP
                   </button>
                 </form>
               )}
@@ -202,8 +202,8 @@ export const ContactSection: React.FC = () => {
                         {c.value}
                       </span>
                     </div>
-                    <span className="font-bold text-[#D4AF37] transition-transform group-hover:translate-x-1">
-                      ↗
+                    <span aria-hidden="true" className="font-bold text-[#D4AF37] transition-transform group-hover:translate-x-1">
+                      {c.external ? "↗" : "→"}
                     </span>
                   </a>
                 ))}
@@ -216,9 +216,15 @@ export const ContactSection: React.FC = () => {
                   </div>
                   <div className="flex items-center justify-between gap-4">
                     <dt className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#D4AF37]">
-                      FOCUS
+                      ROLES
                     </dt>
-                    <dd className="text-sm font-medium text-white">Azure &amp; Cloud Security</dd>
+                    <dd className="text-right text-sm font-medium text-white">Azure security · IAM</dd>
+                  </div>
+                  <div className="flex items-center justify-between gap-4">
+                    <dt className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#D4AF37]">
+                      STATUS
+                    </dt>
+                    <dd className="text-right text-sm font-medium text-[#7FD69B]">Available immediately · Pune or remote</dd>
                   </div>
                 </dl>
                 <a
@@ -226,7 +232,7 @@ export const ContactSection: React.FC = () => {
                   download="Deepak_Dongare_Resume.pdf"
                   className="w-full border-2 border-[#D4AF37] bg-[#18130E] py-4 text-center text-xs font-bold uppercase tracking-[0.22em] text-white transition-all duration-300 hover:bg-[#D4AF37] hover:text-black sm:text-[13px]"
                 >
-                  DOWNLOAD RESUME (PDF) ↓
+                  DOWNLOAD RESUME (PDF) <span aria-hidden="true">↓</span>
                 </a>
               </div>
             </motion.div>
@@ -235,13 +241,23 @@ export const ContactSection: React.FC = () => {
       </section>
 
       <footer className="relative w-full bg-black px-4 pb-10 sm:px-12 lg:px-20">
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-4 border-t border-[#8C6D4F]/25 pt-10 text-center sm:flex-row sm:text-left">
-          <span className="font-mono text-xs uppercase tracking-wider text-[#D5CBC0] sm:text-[13px]">
-            PORTFOLIO // DEEPAK DONGARE • CLOUD SECURITY ENGINEER
-          </span>
-          <span className="font-mono text-xs text-[#D5CBC0] sm:text-[13px]">
-            © {new Date().getFullYear()} • ENGINEERED WITH PRECISION
-          </span>
+        <div className="mx-auto w-full max-w-7xl border-t border-[#8C6D4F]/25 pt-10">
+          <nav aria-label="Footer" className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 font-mono text-xs uppercase tracking-[0.18em] text-[#D5CBC0] sm:justify-start">
+            {[["About","#about"],["Skills","#skills"],["Experience","#experience"],["Practice","#work"],["Contact","#contact"]].map(([l,h]) => (
+              <a key={h} href={h} className="transition-colors hover:text-[#D4AF37]">{l}</a>
+            ))}
+            <a href="/resume.pdf" download="Deepak_Dongare_Resume.pdf" className="transition-colors hover:text-[#D4AF37]">Resume <span aria-hidden="true">↓</span></a>
+            <a href="https://www.linkedin.com/in/deepak-dongare" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[#D4AF37]">LinkedIn <span aria-hidden="true">↗</span></a>
+            <a href="#top" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="text-[#D4AF37] sm:ml-auto">Back to top <span aria-hidden="true">↑</span></a>
+          </nav>
+          <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
+            <span className="font-mono text-xs uppercase tracking-wider text-[#D5CBC0] sm:text-[13px]">
+              Deepak Dongare · Senior Cloud Security Engineer
+            </span>
+            <span className="font-mono text-xs text-[#D5CBC0] sm:text-[13px]">
+              © {new Date().getFullYear()} · Engineered with precision
+            </span>
+          </div>
         </div>
       </footer>
     </>

@@ -80,7 +80,7 @@ export const ProjectsSection: React.FC = () => (
     <div className="relative z-10 mx-auto max-w-7xl">
       <div className="mb-10 flex items-center gap-4 sm:mb-14">
         <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#D4AF37]">
-          04 / SECURITY FOCUS
+          04 / SECURITY PRACTICE
         </span>
         <span className="h-px w-16 bg-gradient-to-r from-[#D4AF37] to-transparent" />
       </div>
@@ -89,9 +89,9 @@ export const ProjectsSection: React.FC = () => (
           Security practice
         </h2>
         <ul className="grid gap-1.5 text-sm text-[#CFC2B5] md:justify-items-end">
-          <li>• Identity and cloud protection</li>
-          <li>• Operational security and automation</li>
-          <li>• Risk, assurance, and internal tools</li>
+          <li>Identity and cloud protection</li>
+          <li>Operational security and automation</li>
+          <li>Risk, assurance, and internal tools</li>
         </ul>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
@@ -118,9 +118,7 @@ export const ProjectsSection: React.FC = () => (
             <ul className="mt-4 flex-1 space-y-2 text-sm leading-snug text-[#CFC2B5]">
               {item.points.map((point) => (
                 <li key={point} className="flex gap-2">
-                  <span aria-hidden="true" className="text-[#D4AF37]">
-                    •
-                  </span>
+                  <span aria-hidden="true" className="mt-[0.5em] h-1.5 w-1.5 shrink-0 rotate-45 bg-[#D4AF37]" />
                   <span>{point}</span>
                 </li>
               ))}
