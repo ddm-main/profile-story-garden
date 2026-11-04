@@ -6,7 +6,7 @@ const navItems = [
   { name: "ABOUT", id: "about" },
   { name: "SKILLS", id: "skills" },
   { name: "EXPERIENCE", id: "experience" },
-  { name: "FOCUS", id: "work" },
+  { name: "PRACTICE", id: "work" },
   { name: "CONTACT", id: "contact" },
 ];
 
@@ -138,8 +138,8 @@ export const Header: React.FC = () => {
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
             <span>LET&apos;S TALK</span>
-            <span className="transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-xs font-bold">
-              ↗
+            <span aria-hidden="true" className="transform transition-transform duration-300 group-hover:translate-y-0.5 text-xs font-bold">
+              ↓
             </span>
           </a>
 
@@ -206,7 +206,7 @@ export const Header: React.FC = () => {
                 className="w-full py-3.5 border border-[#D4AF37] bg-[#D4AF37]/10 text-[#F7E7C4] text-xs font-medium tracking-[0.25em] uppercase text-center block"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
-                LET&apos;S TALK ↗
+                LET&apos;S TALK <span aria-hidden="true">↓</span>
               </a>
               <a
                 href="/resume.pdf"

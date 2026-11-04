@@ -9,28 +9,60 @@ import { ExperienceSection } from "@/components/ExperienceSection";
 import { ContactSection } from "@/components/ContactSection";
 import { ScrollProgress } from "@/components/ScrollProgress";
 
-const title = "Deepak Dongare | Senior Cloud Security Engineer | Azure & IAM";
+const title = "Deepak Dongare | Cloud Security Engineer | Azure & IAM";
 const desc =
-  "10 years of IT experience securing Azure, identity, endpoints, and enterprise infrastructure.";
-const img = "https://www.deepakd.online/deepak-portrait.webp";
+  "Senior Cloud Security Engineer, Microsoft SC-500 certified. 10 years in IT, 7+ in Azure: Entra ID, network security, incident response, TISAX AL2.";
+const url = "https://deepakd.online/";
+const img = "https://deepakd.online/deepak-portrait.webp";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": url + "#person",
+      name: "Deepak Dongare",
+      jobTitle: "Senior Cloud Security Engineer",
+      url,
+      image: img,
+      email: "mailto:deepak.career@hotmail.com",
+      address: { "@type": "PostalAddress", addressLocality: "Pune", addressRegion: "Maharashtra", addressCountry: "IN" },
+      sameAs: ["https://www.linkedin.com/in/deepak-dongare"],
+      alumniOf: { "@type": "CollegeOrUniversity", name: "Savitribai Phule Pune University (SPPU)" },
+      hasCredential: {
+        "@type": "EducationalOccupationalCredential",
+        name: "Microsoft Certified: Cloud and AI Security Engineer Associate (SC-500)",
+        recognizedBy: { "@type": "Organization", name: "Microsoft" },
+        url: "https://learn.microsoft.com/en-us/users/deepakdongare/transcript/d4y0xu19gkjj5l2",
+      },
+      knowsAbout: ["Azure Security", "Microsoft Entra ID", "Identity and Access Management", "Defender for Cloud", "Network Security", "Incident Response", "TISAX"],
+    },
+    { "@type": "ProfilePage", url, name: title, mainEntity: { "@id": url + "#person" } },
+  ],
+};
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title },
       { name: "description", content: desc },
-      { property: "og:title", content: "Deepak Dongare | Senior Cloud Security Engineer" },
+      { property: "og:title", content: title },
       { property: "og:description", content: desc },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://www.deepakd.online/" },
+      { property: "og:type", content: "profile" },
+      { property: "og:url", content: url },
       { property: "og:site_name", content: "Deepak Dongare" },
+      { property: "og:locale", content: "en_IN" },
+      { property: "og:image", content: img },
+      { property: "og:image:alt", content: "Portrait of Deepak Dongare, Senior Cloud Security Engineer" },
+      { property: "og:image:width", content: "800" },
+      { property: "og:image:height", content: "1000" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: desc },
-      { property: "og:image", content: img },
-      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: img },
     ],
-    links: [{ rel: "canonical", href: "https://www.deepakd.online/" }],
+    links: [{ rel: "canonical", href: url }],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(jsonLd) }],
   }),
   component: Index,
 });

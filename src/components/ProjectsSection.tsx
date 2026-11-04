@@ -3,19 +3,19 @@ import { motion } from "framer-motion";
 
 const focusAreas = [
   {
-    number: "01",
+    number: "A",
     label: "IDENTITY & ACCESS",
     title: "Secure every identity.",
     points: [
       "10+ applications · Entra ID and hybrid Active Directory",
-      "MFA rollout for 230–240 users",
+      "MFA rollout for 250+ users at RealThingks · 450+ at FinIQ",
       "Conditional Access · RBAC · PIM · access reviews",
     ],
     tags: ["Microsoft Entra ID", "MFA", "Conditional Access", "RBAC", "PIM", "Entra Connect"],
-    proof: "230–240 USERS",
+    proof: "250+ USERS",
   },
   {
-    number: "02",
+    number: "B",
     label: "AZURE SECURITY",
     title: "Harden cloud infrastructure.",
     points: [
@@ -34,23 +34,23 @@ const focusAreas = [
     proof: "100+ AZURE VMS AT FINIQ",
   },
   {
-    number: "03",
-    label: "ENDPOINT & OPERATIONS",
+    number: "C",
+    label: "ENDPOINT & INCIDENT RESPONSE",
     title: "Make security operational.",
     points: [
-      "260+ endpoints · 20 shared devices · Sophos Intercept X XDR",
+      "Led ransomware response at FinIQ (Feb 2022): 11 of 450 systems isolated and restored",
       "DLP · BitLocker · anti-malware · device controls",
-      "PowerShell and Python compliance reporting",
+      "Monthly Nessus scans · quarterly awareness training · CEO-impersonation scam handled",
     ],
     tags: ["Sophos Intercept X XDR", "DLP", "BitLocker", "PowerShell", "Python", "Nessus"],
-    proof: "260+ ENDPOINTS",
+    proof: "11 OF 450 CONTAINED",
   },
   {
-    number: "04",
+    number: "D",
     label: "RISK & COMPLIANCE",
     title: "Turn controls into evidence.",
     points: [
-      "Led TISAX Assessment Level 2 activities",
+      "Led TISAX Assessment Level 2 (AL2)",
       "Gap assessments · evidence · remediation follow-up",
       "External auditor coordination · ISO 27001 audit support",
     ],
@@ -58,7 +58,7 @@ const focusAreas = [
     proof: "TISAX LEVEL 2",
   },
   {
-    number: "05",
+    number: "E",
     label: "INTERNAL IT PLATFORMS",
     title: "Build tools around the work.",
     points: [
@@ -80,7 +80,7 @@ export const ProjectsSection: React.FC = () => (
     <div className="relative z-10 mx-auto max-w-7xl">
       <div className="mb-10 flex items-center gap-4 sm:mb-14">
         <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[#D4AF37]">
-          04 / SECURITY FOCUS
+          04 / SECURITY PRACTICE
         </span>
         <span className="h-px w-16 bg-gradient-to-r from-[#D4AF37] to-transparent" />
       </div>
@@ -89,9 +89,9 @@ export const ProjectsSection: React.FC = () => (
           Security practice
         </h2>
         <ul className="grid gap-1.5 text-sm text-[#CFC2B5] md:justify-items-end">
-          <li>• Identity and cloud protection</li>
-          <li>• Operational security and automation</li>
-          <li>• Risk, assurance, and internal tools</li>
+          <li>Identity and cloud protection</li>
+          <li>Operational security and automation</li>
+          <li>Risk, assurance, and internal tools</li>
         </ul>
       </div>
       <div className="grid gap-4 md:grid-cols-2">
@@ -118,9 +118,7 @@ export const ProjectsSection: React.FC = () => (
             <ul className="mt-4 flex-1 space-y-2 text-sm leading-snug text-[#CFC2B5]">
               {item.points.map((point) => (
                 <li key={point} className="flex gap-2">
-                  <span aria-hidden="true" className="text-[#D4AF37]">
-                    •
-                  </span>
+                  <span aria-hidden="true" className="mt-[0.5em] h-1.5 w-1.5 shrink-0 rotate-45 bg-[#D4AF37]" />
                   <span>{point}</span>
                 </li>
               ))}
