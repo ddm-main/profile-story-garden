@@ -311,9 +311,9 @@ export const ExperienceSection: React.FC = () => (
 
       <div className="mt-8 flex flex-col justify-between gap-2 border border-[#8C6D4F]/30 bg-[#100D0B] p-5 sm:flex-row sm:items-center sm:p-6">
         <ul className="font-display text-2xl text-white">
-          <li>• B.E. Electronics &amp; Telecommunication</li>
+          <li>B.E. Electronics &amp; Telecommunication</li>
           <li className="mt-1 font-sans text-sm text-[#BFB4AA]">
-            • SGOI COE · Pune University (SPPU) · First Class
+            SGOI COE · Pune University (SPPU) · First Class
           </li>
         </ul>
         <span className="font-mono text-sm text-[#C9A96E]">2016</span>

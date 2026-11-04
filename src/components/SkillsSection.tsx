@@ -5,11 +5,9 @@ const TRANSCRIPT_URL =
   "https://learn.microsoft.com/en-us/users/deepakdongare/transcript/d4y0xu19gkjj5l2";
 
 const certDetails: [string, string][] = [
-  ["Certification", "Microsoft Certified: Cloud and AI Security Engineer Associate"],
-  ["Certification number", "851T73-B7E299"],
+  ["Credential", "Microsoft Certified: Cloud and AI Security Engineer Associate"],
   ["Exam passed", "SC-500 · Implementing End-to-End Security Controls for Cloud and AI Workloads"],
-  ["Earned", "Oct 24, 2026"],
-  ["Expires", "Oct 25, 2027"],
+  ["Verification", "Official Microsoft Learn transcript"],
   ["Issuer", "Microsoft"],
 ];
 
@@ -22,13 +20,13 @@ const CertificationCard: React.FC = () => {
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
           <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#B39169]">
-            Certification
+            Microsoft credential
           </span>
           <h3 className="mt-1 text-sm font-semibold text-white sm:text-base">
             Microsoft Certified: Cloud and AI Security Engineer Associate (SC-500)
           </h3>
           <span className="mt-1 block text-xs text-[#AFA49A]">
-            Microsoft · Earned Oct 2026 · Valid to Oct 2027
+            Issued by Microsoft · Verified via Microsoft Learn
           </span>
         </div>
         <div className="flex shrink-0 flex-wrap gap-2">
@@ -38,7 +36,7 @@ const CertificationCard: React.FC = () => {
             rel="noopener noreferrer"
             className="border border-[#D4AF37] px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#D4AF37] hover:text-black"
           >
-            Verify on Microsoft Learn ↗
+            Verify on Microsoft Learn <span aria-hidden="true">↗</span>
           </a>
         </div>
       </div>
@@ -58,7 +56,7 @@ const platforms: { name: string; points: string[] }[] = [
   {
     name: "Microsoft Entra ID",
     points: [
-      "MFA rollout for 230–240 users",
+      "MFA for 250+ users",
       "Conditional Access, RBAC, PIM",
       "Access reviews and joiner, mover, leaver",
       "SSO for 10+ applications",
@@ -69,7 +67,7 @@ const platforms: { name: string; points: string[] }[] = [
     points: [
       "Secure Score reviews",
       "CIS Azure and Microsoft Cloud Security Benchmark",
-      "Risk prioritisation and remediation tracking",
+      "Risk prioritization and remediation tracking",
     ],
   },
   {
@@ -105,11 +103,11 @@ const platforms: { name: string; points: string[] }[] = [
     points: ["Backup job and failure reviews", "Retention checks", "Restore and DR validation"],
   },
   {
-    name: "Intune & Defender for Endpoint",
+    name: "Sophos XDR & Endpoint",
     points: [
-      "Device management",
-      "Endpoint protection alongside Sophos",
+      "Intercept X XDR, EDR and DLP",
       "BitLocker and device controls",
+      "Intune and Defender for Endpoint (basic)",
     ],
   },
 ];
@@ -119,37 +117,37 @@ const AZURE_TERMS =
 
 const skillGroups = [
   {
-    title: "IDENTITY & ACCESS",
+    title: "Identity & access",
     detail:
       "Entra ID · Entra Connect · Active Directory · MFA · Conditional Access · RBAC · PIM · PAM · SSO · OAuth 2.0 · JIT access · Zero Trust",
   },
   {
-    title: "AZURE SECURITY",
+    title: "Azure security & governance",
     detail:
-      "Defender for Cloud · Secure Score · Azure Policy · Key Vault · Managed Identities · Azure Monitor · Log Analytics · CSPM · CIS Azure Benchmark · Security Benchmark · Threat Modeling",
+      "Defender for Cloud · Secure Score · Azure Policy · Key Vault · Managed Identities · Azure Monitor · Log Analytics · CIS Azure Benchmark · Security Benchmark · Threat Modeling",
   },
   {
-    title: "NETWORK SECURITY",
+    title: "Azure network security",
     detail:
       "Azure Firewall · NSGs · VNets · Private Endpoints · Private DNS · Application Gateway · WAF · Load Balancer · ExpressRoute · Network Watcher · VPN Gateway · Site-to-Site & Point-to-Site VPN · Bastion · DNS · TCP/IP · Segmentation",
   },
   {
-    title: "CLOUD & RESILIENCE",
+    title: "Infrastructure & resilience",
     detail:
       "Azure VMs · Azure Storage · Azure Backup · Azure Site Recovery · Backup Monitoring · Recovery Validation · Patch Management · SSL/TLS Certificate Lifecycle",
   },
   {
-    title: "ENDPOINT & RESPONSE",
+    title: "Firewall, endpoint & security ops",
     detail:
-      "Sophos Firewall · Sophos Intercept X · XDR · EDR · DLP · BitLocker · Nessus · Wireshark · Alert Triage · Incident Investigation · Root Cause Analysis",
+      "Sophos Firewall · Sophos Intercept X · XDR · EDR · DLP · BitLocker · Nessus · Wireshark · Alert Triage · Incident Response · Vulnerability Management · Security Awareness Training · Root Cause Analysis",
   },
   {
-    title: "AUTOMATION & GOVERNANCE",
+    title: "Administration & compliance",
     detail:
-      "PowerShell · Python · Azure CLI · Azure Automation · Microsoft 365 · TISAX AL2 · ISO 27001 Audit Support · Gap Assessments · Auditor Coordination",
+      "PowerShell · Python · Azure CLI · Azure Automation · Azure Bicep · Microsoft 365 · TISAX AL2 · ISO 27001 Audit Support · Gap Assessments · Auditor Coordination",
   },
   {
-    title: "INTERNAL IT PLATFORMS",
+    title: "Internal IT platforms",
     detail:
       "CRM · Skills Matrix · IT Applications · Claude · Lovable · Supabase · Workflow and tool replacement",
   },
@@ -216,7 +214,7 @@ export const SkillsSection: React.FC = () => (
             className={`bg-[#0D0B09] p-5 sm:p-6 ${i === skillGroups.length - 1 ? "sm:col-span-2 lg:col-span-3" : ""}`}
           >
             <span className="font-mono text-[10px] text-[#B39169]">0{i + 1}</span>
-            <h3 className="mt-2 font-display text-2xl text-[#E6C27D]">{group.title}</h3>
+            <h4 className="mt-2 font-display text-2xl text-[#E6C27D]">{group.title}</h4>
             <ul className="mt-3 flex flex-wrap gap-2">
               {group.detail.split(" · ").map((skill) => (
                 <li
@@ -232,13 +230,12 @@ export const SkillsSection: React.FC = () => (
       </div>
       <CertificationCard />
       <ul className="mt-4 flex flex-wrap gap-2 text-xs text-[#AFA49A]">
-        <li className="mr-1 self-center uppercase tracking-wider">Learning:</li>
+        <li className="mr-1 self-center tracking-wider">Learning and basic:</li>
         {[
-          "Terraform",
-          "Azure Bicep",
-          "Infrastructure as Code",
-          "Microsoft Intune",
-          "Defender for Endpoint",
+          "Terraform (learning)",
+          "Infrastructure as Code (learning)",
+          "Microsoft Intune (basic)",
+          "Defender for Endpoint (basic)",
         ].map((skill) => (
           <li
             key={skill}

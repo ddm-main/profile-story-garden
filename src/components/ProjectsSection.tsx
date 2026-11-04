@@ -3,19 +3,19 @@ import { motion } from "framer-motion";
 
 const focusAreas = [
   {
-    number: "01",
+    number: "A",
     label: "IDENTITY & ACCESS",
     title: "Secure every identity.",
     points: [
       "10+ applications · Entra ID and hybrid Active Directory",
-      "MFA rollout for 230–240 users",
+      "MFA rollout for 250+ users at RealThingks · 450+ at FinIQ",
       "Conditional Access · RBAC · PIM · access reviews",
     ],
     tags: ["Microsoft Entra ID", "MFA", "Conditional Access", "RBAC", "PIM", "Entra Connect"],
-    proof: "230–240 USERS",
+    proof: "250+ USERS",
   },
   {
-    number: "02",
+    number: "B",
     label: "AZURE SECURITY",
     title: "Harden cloud infrastructure.",
     points: [
@@ -34,23 +34,23 @@ const focusAreas = [
     proof: "100+ AZURE VMS AT FINIQ",
   },
   {
-    number: "03",
-    label: "ENDPOINT & OPERATIONS",
+    number: "C",
+    label: "ENDPOINT & INCIDENT RESPONSE",
     title: "Make security operational.",
     points: [
-      "260+ endpoints · 20 shared devices · Sophos Intercept X XDR",
+      "Led ransomware response at FinIQ (Feb 2022): 11 of 450 systems isolated and restored",
       "DLP · BitLocker · anti-malware · device controls",
-      "PowerShell and Python compliance reporting",
+      "Monthly Nessus scans · quarterly awareness training · CEO-impersonation scam handled",
     ],
     tags: ["Sophos Intercept X XDR", "DLP", "BitLocker", "PowerShell", "Python", "Nessus"],
-    proof: "260+ ENDPOINTS",
+    proof: "11 OF 450 CONTAINED",
   },
   {
-    number: "04",
+    number: "D",
     label: "RISK & COMPLIANCE",
     title: "Turn controls into evidence.",
     points: [
-      "Led TISAX Assessment Level 2 activities",
+      "Led TISAX Assessment Level 2 (AL2)",
       "Gap assessments · evidence · remediation follow-up",
       "External auditor coordination · ISO 27001 audit support",
     ],
@@ -58,7 +58,7 @@ const focusAreas = [
     proof: "TISAX LEVEL 2",
   },
   {
-    number: "05",
+    number: "E",
     label: "INTERNAL IT PLATFORMS",
     title: "Build tools around the work.",
     points: [
