@@ -27,6 +27,16 @@ const rowCls =
 export const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2200);
+    } catch {
+      window.location.href = `mailto:${CONTACT_EMAIL}`;
+    }
+  };
 
   // No backend is wired up, so "sending" opens the visitor's own mail client
   // with the message pre-filled.
@@ -207,6 +217,23 @@ export const ContactSection: React.FC = () => {
                     </span>
                   </a>
                 ))}
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    type="button"
+                    onClick={copyEmail}
+                    className="rounded-sm border border-[#D4AF37]/70 px-3 py-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#D4AF37] hover:text-black"
+                  >
+                    {copied ? "Email copied ✓" : "Copy email"}
+                  </button>
+                  <a
+                    href="/resume.pdf"
+                    download="Deepak_Dongare_Resume.pdf"
+                    className="rounded-sm border border-[#8C6D4F]/50 px-3 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.15em] text-white transition-colors hover:border-[#D4AF37] hover:text-[#F5D59A]"
+                  >
+                    Resume <span aria-hidden="true">↓</span>
+                  </a>
+                  <span className="sr-only" aria-live="polite">{copied ? "Email address copied" : ""}</span>
+                </div>
                 <dl className="grid flex-1 content-center gap-3 rounded-sm border border-[#8C6D4F]/35 bg-[#0D0B09] p-4">
                   <div className="flex items-center justify-between gap-4">
                     <dt className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#D4AF37]">
