@@ -212,7 +212,7 @@ export const Header: React.FC = () => {
                 href="/resume.pdf"
                 download="Deepak_Dongare_Resume.pdf"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-3 border border-[#8C6D4F]/40 text-[#A8988B] text-xs font-medium tracking-[0.2em] uppercase text-center block"
+                className="w-full py-3 border border-[#8C6D4F]/40 text-[#C8B6A6] text-xs font-medium tracking-[0.2em] uppercase text-center block"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
                 DOWNLOAD RESUME ↓
