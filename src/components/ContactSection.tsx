@@ -20,13 +20,23 @@ const panelTitle = "font-mono text-xs font-bold uppercase tracking-[0.25em] text
 const labelCls =
   "mb-2 block font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#D4AF37] sm:text-[13px]";
 const fieldCls =
-  "w-full rounded-sm border border-[#8C6D4F]/40 bg-[#14100D] px-4 py-3 text-base text-white outline-none transition-colors placeholder-[#A8988B] focus:border-[#D4AF37] sm:text-sm";
+  "w-full rounded-sm border border-[#8C6D4F]/40 bg-[#14100D] px-4 py-3 text-base text-white outline-none transition-colors placeholder-[#9C8E82] focus:border-[#D4AF37] sm:text-sm";
 const rowCls =
   "group flex items-center justify-between rounded-sm border border-[#8C6D4F]/40 bg-[#14100D] p-4 transition-colors hover:border-[#D4AF37] hover:bg-[#1A1510]";
 
 export const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2200);
+    } catch {
+      window.location.href = `mailto:${CONTACT_EMAIL}`;
+    }
+  };
 
   // No backend is wired up, so "sending" opens the visitor's own mail client
   // with the message pre-filled.
@@ -79,9 +89,9 @@ export const ContactSection: React.FC = () => {
                 </span>
               </h2>
               <ul className="grid gap-1.5 text-sm text-[#E2D6CA] md:justify-items-end sm:text-[15px]">
-                <li>• Azure and cloud security</li>
-                <li>• Identity protection</li>
-                <li>• Cloud security engineering</li>
+                <li>Azure and cloud security</li>
+                <li>Identity protection</li>
+                <li>Cloud security engineering</li>
               </ul>
             </div>
           </motion.div>
@@ -105,7 +115,7 @@ export const ContactSection: React.FC = () => {
                     EMAIL DRAFT READY
                   </h4>
                   <ul className="mx-auto max-w-sm space-y-2 text-left text-sm text-[#E0D4C8]">
-                    <li>• Review and send the draft in your mail app.</li>
+                    <li>Review and send the draft in your mail app.</li>
                     <li>
                       • Or email{" "}
                       <a
@@ -120,7 +130,7 @@ export const ContactSection: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setSent(false)}
-                    className="font-mono text-xs uppercase tracking-[0.2em] text-[#A8988B] underline transition-colors hover:text-[#D4AF37]"
+                    className="font-mono text-xs uppercase tracking-[0.2em] text-[#C8B6A6] underline transition-colors hover:text-[#D4AF37]"
                   >
                     Back to form
                   </button>
@@ -207,6 +217,23 @@ export const ContactSection: React.FC = () => {
                     </span>
                   </a>
                 ))}
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    type="button"
+                    onClick={copyEmail}
+                    className="rounded-sm border border-[#D4AF37]/70 px-3 py-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#D4AF37] hover:text-black"
+                  >
+                    {copied ? "Email copied ✓" : "Copy email"}
+                  </button>
+                  <a
+                    href="/resume.pdf"
+                    download="Deepak_Dongare_Resume.pdf"
+                    className="rounded-sm border border-[#8C6D4F]/50 px-3 py-3 text-center text-[11px] font-semibold uppercase tracking-[0.15em] text-white transition-colors hover:border-[#D4AF37] hover:text-[#F5D59A]"
+                  >
+                    Resume <span aria-hidden="true">↓</span>
+                  </a>
+                  <span className="sr-only" aria-live="polite">{copied ? "Email address copied" : ""}</span>
+                </div>
                 <dl className="grid flex-1 content-center gap-3 rounded-sm border border-[#8C6D4F]/35 bg-[#0D0B09] p-4">
                   <div className="flex items-center justify-between gap-4">
                     <dt className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#D4AF37]">

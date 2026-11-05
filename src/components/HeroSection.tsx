@@ -39,6 +39,22 @@ export const HeroSection: React.FC = () => {
   const [isInHero, setIsInHero] = useState(true);
   const [videoFailed, setVideoFailed] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const userPausedRef = useRef(false);
+  const toggleVideo = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (isPaused) {
+      userPausedRef.current = false;
+      if (v.currentTime >= 9) v.currentTime = 0;
+      v.play().catch(() => {});
+      setIsPaused(false);
+    } else {
+      userPausedRef.current = true;
+      v.pause();
+      setIsPaused(true);
+    }
+  };
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(
     () =>
       typeof window !== "undefined" &&
@@ -99,7 +115,7 @@ export const HeroSection: React.FC = () => {
           } else if (entry.isIntersecting && hasLeftHeroRef.current) {
             // User came back to the hero section after leaving
             hasLeftHeroRef.current = false;
-            if (videoRef.current && !prefersReducedMotion) {
+            if (videoRef.current && !prefersReducedMotion && !userPausedRef.current) {
               videoRef.current.currentTime = 0;
               videoRef.current.play().catch(() => {});
             }
@@ -171,6 +187,22 @@ export const HeroSection: React.FC = () => {
             >
               <source src="/videos/hero.mp4" type="video/mp4" />
             </video>
+          )}
+
+          {!prefersReducedMotion && !videoFailed && (
+            <button
+              type="button"
+              onClick={toggleVideo}
+              aria-label={isPaused ? "Play background video" : "Pause background video"}
+              aria-pressed={isPaused}
+              className="absolute bottom-6 right-4 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-[#D4AF37]/60 bg-black/60 text-[#F5D59A] backdrop-blur-sm transition-colors hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D4AF37] sm:right-6"
+            >
+              {isPaused ? (
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M8 5v14l11-7z" /></svg>
+              ) : (
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M6 5h4v14H6zM14 5h4v14h-4z" /></svg>
+              )}
+            </button>
           )}
 
           {/* Static fallback when the video cannot load, cannot autoplay, or reduced motion is on */}
