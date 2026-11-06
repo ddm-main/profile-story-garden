@@ -36,10 +36,10 @@ const views: View[] = [
 ];
 
 export const SecurityArchitecture: React.FC = () => {
-  const [viewId, setViewId] = useState(views[0].id);
-  const view = views.find((v) => v.id === viewId)!;
-  const [active, setActive] = useState<string>(view.nodes[0].id);
-  const node = view.nodes.find((n) => n.id === active) ?? view.nodes[0];
+  const [viewId, setViewId] = useState(views[0]!.id);
+  const view = views.find((v) => v.id === viewId) ?? views[0]!;
+  const [active, setActive] = useState<string>(view.nodes[0]!.id);
+  const node = view.nodes.find((n) => n.id === active) ?? view.nodes[0]!;
   const pos = (id: string) => view.nodes.find((n) => n.id === id)!;
 
   return (
@@ -61,7 +61,7 @@ export const SecurityArchitecture: React.FC = () => {
               key={v.id}
               role="tab"
               aria-selected={v.id === viewId}
-              onClick={() => { setViewId(v.id); setActive(v.nodes[0].id); }}
+              onClick={() => { setViewId(v.id); setActive(v.nodes[0]!.id); }}
               className={`border px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] transition-colors ${v.id === viewId ? "border-[#D4AF37] bg-[#D4AF37] text-black" : "border-[#8C6D4F]/50 text-[#E8DFD8] hover:border-[#D4AF37]"}`}
             >
               {v.name}
