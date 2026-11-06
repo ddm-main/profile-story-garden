@@ -1,5 +1,6 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { SecurityArchitecture } from "./SecurityArchitecture";
 
 const focusAreas = [
   {
@@ -81,6 +82,12 @@ const incidentSteps = [
 
 const IncidentCaseStudy: React.FC = () => {
   const [open, setOpen] = React.useState(false);
+  React.useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
   return (
     <motion.div
       initial={{ opacity: 0, y: 14 }}
@@ -141,6 +148,30 @@ const IncidentCaseStudy: React.FC = () => {
     </motion.div>
   );
 };
+
+const ScamCaseStudy: React.FC = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 14 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.2 }}
+    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+    className="mt-4 grid gap-5 border border-[#8C6D4F]/40 bg-[#100D0B] p-5 sm:grid-cols-[1fr_1fr] sm:p-7"
+  >
+    <div>
+      <span className="font-mono text-xs tracking-[0.18em] text-[#D4AF37]">CASE STUDY · REALTHINGKS</span>
+      <h3 className="mt-2 font-display text-4xl uppercase leading-none text-white sm:text-5xl">CEO-impersonation scam</h3>
+    </div>
+    <ul className="space-y-1.5 text-sm text-[#CFC2B5]">
+      {[
+        "Spotted and handled a CEO-impersonation gift card scam",
+        "Ran quarterly awareness training: phishing, social engineering, attack methods",
+        "Monthly Nessus vulnerability scans with follow-up fixes",
+      ].map((t) => (
+        <li key={t} className="flex gap-2"><span aria-hidden="true" className="mt-[0.5em] h-1.5 w-1.5 shrink-0 rotate-45 bg-[#D4AF37]" />{t}</li>
+      ))}
+    </ul>
+  </motion.div>
+);
 
 export const ProjectsSection: React.FC = () => (
   <section
@@ -207,7 +238,9 @@ export const ProjectsSection: React.FC = () => (
           </motion.article>
         ))}
       </div>
+      <SecurityArchitecture />
       <IncidentCaseStudy />
+      <ScamCaseStudy />
     </div>
   </section>
 );
