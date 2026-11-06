@@ -237,3 +237,15 @@ section[id] {
     scroll-behavior: auto;
   }
 }
+
+@keyframes arch-flow { to { stroke-dashoffset: -36; } }
+.arch-flow { animation: arch-flow 1.6s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .arch-flow { animation: none; } }
+
+@media print {
+  video, .skip-link, header, nav, button, form, [aria-hidden="true"] { display: none !important; }
+  html, body, section, main, div { background: #fff !important; color: #000 !important; box-shadow: none !important; }
+  * { color: #000 !important; border-color: #999 !important; text-shadow: none !important; }
+  section { break-inside: avoid-page; padding-top: 12px !important; padding-bottom: 12px !important; min-height: 0 !important; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 10px; }
+}

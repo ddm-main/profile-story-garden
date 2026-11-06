@@ -13,7 +13,8 @@ const title = "Deepak Dongare | Cloud Security Engineer | Azure & IAM";
 const desc =
   "Senior Cloud Security Engineer, Microsoft SC-500 certified. 10 years in IT, 7+ in Azure: Entra ID, network security, incident response, TISAX AL2.";
 const url = "https://deepakd.online/";
-const img = "https://deepakd.online/deepak-portrait.webp";
+const img = "https://deepakd.online/og-image.jpg";
+const portrait = "https://deepakd.online/deepak-portrait.webp";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -24,7 +25,7 @@ const jsonLd = {
       name: "Deepak Dongare",
       jobTitle: "Senior Cloud Security Engineer",
       url,
-      image: img,
+      image: portrait,
       email: "mailto:deepak.career@hotmail.com",
       address: { "@type": "PostalAddress", addressLocality: "Pune", addressRegion: "Maharashtra", addressCountry: "IN" },
       sameAs: ["https://www.linkedin.com/in/deepak-dongare"],
@@ -53,9 +54,9 @@ export const Route = createFileRoute("/")({
       { property: "og:site_name", content: "Deepak Dongare" },
       { property: "og:locale", content: "en_IN" },
       { property: "og:image", content: img },
-      { property: "og:image:alt", content: "Portrait of Deepak Dongare, Senior Cloud Security Engineer" },
-      { property: "og:image:width", content: "800" },
-      { property: "og:image:height", content: "1000" },
+      { property: "og:image:alt", content: "Deepak Dongare, Senior Cloud Security Engineer, Azure & IAM, SC-500 certified" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: title },
       { name: "twitter:description", content: desc },
