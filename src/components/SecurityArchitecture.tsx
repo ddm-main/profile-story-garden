@@ -27,7 +27,7 @@ const views: View[] = [
       { id: "ad", label: "On-prem AD", x: 60, y: 130, points: ["Hybrid Active Directory"] },
       { id: "sync", label: "Entra Connect", x: 230, y: 130, points: ["Directory sync to the cloud"] },
       { id: "entra", label: "Entra ID", x: 400, y: 130, points: ["250+ users at RealThingks", "450+ users at FinIQ"] },
-      { id: "ca", label: "Conditional Access + MFA", x: 600, y: 50, points: ["MFA rollout for every user", "Conditional Access policies"] },
+      { id: "ca", label: "Conditional Access + MFA", x: 590, y: 50, points: ["MFA rollout for every user", "Conditional Access policies"] },
       { id: "pim", label: "RBAC · PIM", x: 600, y: 130, points: ["Least-privilege RBAC", "PIM and access reviews"] },
       { id: "sso", label: "SSO apps", x: 600, y: 210, points: ["SSO for 10+ applications"] },
     ],
@@ -72,7 +72,7 @@ export const SecurityArchitecture: React.FC = () => {
 
       <div className="mt-6 grid gap-5 lg:grid-cols-[1fr_300px]">
         <div className="overflow-x-auto">
-          <svg viewBox="0 0 700 260" className="min-w-[560px] w-full" role="group" aria-label={view.name}>
+          <svg viewBox="0 0 720 260" className="min-w-[560px] w-full" role="group" aria-label={view.name}>
             {view.links.map(([a, b]) => {
               const p = pos(a), q = pos(b);
               const hot = a === active || b === active;
