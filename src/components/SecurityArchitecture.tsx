@@ -27,7 +27,7 @@ const views: View[] = [
       { id: "ad", label: "On-prem AD", x: 60, y: 130, points: ["Hybrid Active Directory"] },
       { id: "sync", label: "Entra Connect", x: 230, y: 130, points: ["Directory sync to the cloud"] },
       { id: "entra", label: "Entra ID", x: 400, y: 130, points: ["250+ users at RealThingks", "450+ users at FinIQ"] },
-      { id: "ca", label: "Conditional Access + MFA", x: 590, y: 50, points: ["MFA rollout for every user", "Conditional Access policies"] },
+      { id: "ca", label: "Conditional Access + MFA", x: 560, y: 50, points: ["MFA rollout for every user", "Conditional Access policies"] },
       { id: "pim", label: "RBAC · PIM", x: 600, y: 130, points: ["Least-privilege RBAC", "PIM and access reviews"] },
       { id: "sso", label: "SSO apps", x: 600, y: 210, points: ["SSO for 10+ applications"] },
     ],
@@ -85,7 +85,7 @@ export const SecurityArchitecture: React.FC = () => {
             })}
             {view.nodes.map((n) => {
               const on = n.id === active;
-              const w = Math.max(110, n.label.length * 7.4 + 24);
+              const w = Math.max(110, n.label.length * 7 + 22);
               return (
                 <g
                   key={n.id}
