@@ -372,6 +372,18 @@ export const HeroSection: React.FC = () => {
                   ↓
                 </span>
               </motion.a>
+
+              {/* LinkedIn Button */}
+              <motion.a
+                href="https://www.linkedin.com/in/deepak-dongare"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.02 }}
+                className="relative inline-flex items-center justify-center space-x-2 px-6 sm:px-7 py-3.5 border border-[#C99E5D] bg-[#100D0B] hover:border-[#D4AF37] hover:bg-[#1A1510] text-[#F5EDE4] hover:text-white text-xs sm:text-[13px] font-semibold tracking-[0.22em] uppercase transition-all duration-300 text-center"
+              >
+                <span>CONNECT ON LINKEDIN</span>
+                <span aria-hidden="true" className="text-sm font-bold">↗</span>
+              </motion.a>
             </motion.div>
           </motion.div>
         </div>
