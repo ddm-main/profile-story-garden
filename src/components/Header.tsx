@@ -132,6 +132,15 @@ export const Header: React.FC = () => {
         {/* Right Action & Mobile Toggle */}
         <div className="flex items-center space-x-2.5 sm:space-x-3 ml-auto lg:ml-0">
           <a
+            href="https://www.linkedin.com/in/deepak-dongare"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile (opens in a new tab)"
+            className="flex h-10 w-10 items-center justify-center border border-[#D4AF37]/60 bg-[#16120E]/90 text-[#F7E7C4] hover:bg-[#D4AF37] hover:text-black transition-all duration-300"
+          >
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.06c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.77 2.65 4.77 6.1V24h-4v-8.4c0-2-.04-4.6-2.8-4.6-2.8 0-3.23 2.19-3.23 4.45V24h-4V8z"/></svg>
+          </a>
+          <a
             href="#contact"
             onClick={goTo("contact")}
             className="group hidden lg:flex items-center space-x-2 text-xs sm:text-[12.5px] tracking-[0.22em] font-semibold uppercase py-2.5 px-4 border border-[#D4AF37]/60 hover:border-[#D4AF37] bg-[#16120E]/90 hover:bg-[#D4AF37] text-white hover:text-black transition-all duration-300 backdrop-blur-sm shadow-[0_0_15px_rgba(212,175,55,0.15)]"
@@ -216,6 +225,16 @@ export const Header: React.FC = () => {
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
                 DOWNLOAD RESUME ↓
+              </a>
+              <a
+                href="https://www.linkedin.com/in/deepak-dongare"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full py-3 border border-[#8C6D4F]/40 text-[#C8B6A6] text-xs font-medium tracking-[0.2em] uppercase text-center block"
+                style={{ fontFamily: "'Montserrat', sans-serif" }}
+              >
+                LINKEDIN <span aria-hidden="true">↗</span>
               </a>
             </div>
           </motion.div>
